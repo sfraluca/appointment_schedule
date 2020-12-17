@@ -9,115 +9,60 @@
         </div>
     </div>
 @endcan
-<div class="card">
-    <div class="card-header">
-        {{ trans('cruds.workingHour.title_singular') }} {{ trans('global.list') }}
+<div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route('admin.raport') }}">
+                {{ trans('global.raport') }}
+            </a>
+        </div>
     </div>
 
-    <div class="card-body">
-        <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-WorkingHour">
-            <thead>
-                <tr>
-                    <th width="10">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+<h3 class="page-title">Calendar</h3>
 
-                    </th>
-                    <th>
-                        {{ trans('cruds.workingHour.fields.id') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.workingHour.fields.employee') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.employee.fields.last_name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.workingHour.fields.date') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.workingHour.fields.start_time') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.workingHour.fields.finish_time') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.workingHour.fields.project') }}
-                    </th>
-                    <th>
-                        &nbsp;
-                    </th>
-                </tr>
-            </thead>
-        </table>
+<form action="" method="GET">
+    <div class="row">
+        <div class="col-xs-6 col-md-4 form-group">
+            <label class="control-label" for="employee">{{ trans('cruds.workingHour.fields.employee') }}</label>
+            <select id="employee" name="employee" class="form-control">
+                @foreach($employees as $key => $value)
+                <option value="{{ $key }}" @if ($key==$currentEmployee) selected @endif>{{$value}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-xs-4">
+            <label class="control-label">&nbsp;</label><br>
+            <input class="btn btn-primary" type="submit" value="{{ trans('global.submit') }}">
+        </div>
     </div>
-</div>
-
-
+</form>
+<div id="calendar"></div>
 
 @endsection
 @section('scripts')
 @parent
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
 <script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('working_hour_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.working-hours.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
-          return entry.id
-      });
+$(document).ready(function () {
+            // page is now ready, initialize the calendar...
+           
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                defaultView: 'agendaWeek',
+                events: [
+                @foreach( $working_hours as $hour)
+                {
+                    title : '{{ $hour->employee->first_name . '' . $hour->employee->last_name}}',
+                    start : '{{ $hour->date . ' ' . $hour->start_time }}',
+                    end : '{{ $hour->date . ' ' . $hour->finish_time}}'
+                    // url : '{{ url('admin.workingHours.edit'), $hour->id }}'
+                },
+                @endforeach
+            ]
 
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
 
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
-@endcan
-
-  let dtOverrideGlobals = {
-    buttons: dtButtons,
-    processing: true,
-    serverSide: true,
-    retrieve: true,
-    aaSorting: [],
-    ajax: "{{ route('admin.working-hours.index') }}",
-    columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'employee_first_name', name: 'employee.first_name' },
-{ data: 'employee.last_name', name: 'employee.last_name' },
-{ data: 'date', name: 'date' },
-{ data: 'start_time', name: 'start_time' },
-{ data: 'finish_time', name: 'finish_time' },
-{ data: 'project_name', name: 'project.name' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
-    ],
-    orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-  };
-  let table = $('.datatable-WorkingHour').DataTable(dtOverrideGlobals);
-  $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
-      $($.fn.dataTable.tables(true)).DataTable()
-          .columns.adjust();
-  });
-  
-});
-
-</script>
+            })
+        });
+      </script>
 @endsection

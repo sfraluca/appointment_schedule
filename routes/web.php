@@ -1,6 +1,9 @@
 <?php
 
-Route::redirect('/', '/login');
+// Route::redirect('/', '/login');
+Route::get('/', function () {
+    return view('landingpage');
+});
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
@@ -36,10 +39,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Working Hours
     Route::delete('working-hours/destroy', 'WorkingHourController@massDestroy')->name('working-hours.massDestroy');
     Route::resource('working-hours', 'WorkingHourController');
+    Route::get('/raport', 'WorkingHourController@raport')->name('raport');
+    Route::get('/payment', 'PaymentController@payment')->name('payment');
+    Route::post('/payment_post', 'PaymentController@payment_post');
 
     // Appointments
     Route::delete('appointments/destroy', 'AppointmentsController@massDestroy')->name('appointments.massDestroy');
     Route::resource('appointments', 'AppointmentsController');
+
+     // Employment
+     Route::delete('employment/destroy', 'EmploymentsController@massDestroy')->name('employments.massDestroy');
+     Route::resource('employments', 'EmploymentsController');
 
     // Projects
     Route::delete('projects/destroy', 'ProjectController@massDestroy')->name('projects.massDestroy');

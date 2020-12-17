@@ -92,8 +92,11 @@ return [
         ],
     ],
     'employee'       => [
+        'id'          => 'Identification number',
         'title'          => 'Employees',
         'title_singular' => 'Employee',
+        'hour'        => 'Hour',
+        'money'        => 'Money',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
@@ -113,6 +116,23 @@ return [
             'deleted_at_helper' => ' ',
             'created_by'        => 'Created By',
             'created_by_helper' => ' ',
+            
+        ],
+    ],
+    'employments'       => [
+        'title'          => 'Employment',
+        'title_singular' => 'Employment',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+        ],
+    ],
+    'payments'       => [
+        'title'          => 'Payments',
+        'title_singular' => 'Payment',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
         ],
     ],
     'workingHour'    => [

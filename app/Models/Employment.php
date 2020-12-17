@@ -8,16 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use \DateTimeInterface;
 
-class Employee extends Model
+class Employment extends Model
 {
     use SoftDeletes, MultiTenantModelTrait, HasFactory;
 
-    public $table = 'employees';
-
-    public static $searchable = [
-        'first_name',
-        'last_name',
-    ];
+    public $table = 'employment';
 
     protected $dates = [
         'created_at',
@@ -26,10 +21,9 @@ class Employee extends Model
     ];
 
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'phone',
-        'email',
+        'hour',
+        'money',
+        'employee_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -41,12 +35,12 @@ class Employee extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by_id');
-    }
-    public function employments()
-    {
-         return $this->hasMany(Employments::class); 
     }
 }

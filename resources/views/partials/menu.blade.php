@@ -82,6 +82,26 @@
                 </a>
             </li>
         @endcan
+        @can('employee_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.employments.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/employments") || request()->is("admin/employments/*") ? "active" : "" }}">
+                    <i class="fa-fw fas fa-suitcase c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.employments.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('payment_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.payment") }}" class="c-sidebar-nav-link {{ request()->is("admin/employments") || request()->is("admin/payment/*") ? "active" : "" }}">
+                    <i class="fa-fw fas fa-suitcase c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.payments.title') }}
+                </a>
+            </li>
+        @endcan
         @can('working_hour_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.working-hours.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/working-hours") || request()->is("admin/working-hours/*") ? "active" : "" }}">

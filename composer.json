@@ -20,7 +20,8 @@
         "laravel/ui": "^3.0",
         "yajra/laravel-datatables-oracle": "^9.11",
         "laraveldaily/laravel-charts": "^0.1.24",
-        "laravel/passport": "^10.0"
+        "laravel/passport": "^10.0",
+        "cartalyst/stripe-laravel": "^13.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
