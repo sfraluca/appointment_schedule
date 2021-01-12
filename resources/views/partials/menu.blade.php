@@ -12,6 +12,7 @@
 
             </select>
         </li>
+        @can('admin_access')
         <li class="c-sidebar-nav-item">
             <a href="{{ route("admin.home") }}" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
@@ -20,6 +21,17 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
+        @endcan
+        @can('profil_access')
+        <li class="c-sidebar-nav-item">
+            <a href="{{ route("admin.profile") }}" class="c-sidebar-nav-link">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
+
+                </i>
+                {{ trans('global.profile') }}
+            </a>
+        </li>
+        @endcan
         @can('user_management_access')
             <li class="c-sidebar-nav-dropdown">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -109,6 +121,16 @@
 
                     </i>
                     {{ trans('cruds.workingHour.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('working_days')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.working_days.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/working_days") || request()->is("admin/working_days/*") ? "active" : "" }}">
+                    <i class="fa-fw fas fa-hourglass c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.workingDays.title') }}
                 </a>
             </li>
         @endcan

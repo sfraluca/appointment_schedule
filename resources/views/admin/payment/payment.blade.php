@@ -23,15 +23,17 @@
 
 
 
+
 <p>Angajatul a lucrat 
     @foreach($report_lm as $month =>$value_lm)
     pe luna {{ \Carbon\Carbon::parse($month)->format('F')}} : {{ $value_lm['hours']}}
     @endforeach
 
-din (totalul de ore: 8xnr de zile)</p>
+din  <span>{{$month_hours}}</span>h</p>
 <p>Salariul este de: {{$salary}} lei</p>
-
+<div class="card">
     <div class="card-body">
+    
         <form method="POST" action="{{ url('admin/payment_post') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -42,9 +44,9 @@ din (totalul de ore: 8xnr de zile)</p>
                         {{ $errors->first('card_no') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('card_no') }}</span>
             </div>
-            <div class="form-group">
+            <div class="row">
+            <div class="form-group col">
                 <label class="required" for="exp_month">{{ trans('exp_month') }}</label>
                 <input class="form-control integer {{ $errors->has('exp_month') ? 'is-invalid' : '' }}" type="text" name="exp_month" id="exp_month" value="{{ old('exp_month') }}" required>
                 @if($errors->has('exp_month'))
@@ -52,9 +54,8 @@ din (totalul de ore: 8xnr de zile)</p>
                         {{ $errors->first('exp_month') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('exp_month') }}</span>
             </div>
-            <div class="form-group">
+            <div class="form-group col">
                 <label class="required" for="exp_year">{{ trans('exp_year') }}</label>
                 <input class="form-control integer {{ $errors->has('exp_year') ? 'is-invalid' : '' }}" type="text" name="exp_year" id="exp_year" value="{{ old('exp_year') }}" required>
                 @if($errors->has('exp_year'))
@@ -62,7 +63,7 @@ din (totalul de ore: 8xnr de zile)</p>
                         {{ $errors->first('exp_year') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('exp_year') }}</span>
+            </div>
             </div>
             <div class="form-group">
                 <label class="required" for="cvv_no">{{ trans('cvv_no') }}</label>
@@ -72,17 +73,15 @@ din (totalul de ore: 8xnr de zile)</p>
                         {{ $errors->first('cvv_no') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cvv_no') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="amount">{{ trans('amount') }}</label>
-                <input class="form-control integer {{ $errors->has('amount') ? 'is-invalid' : '' }}" type="text" name="amount" id="amount" value="{{ old('amount') }}" required>
+                <input class="form-control integer {{ $errors->has('amount') ? 'is-invalid' : '' }}" type="text" name="amount" id="amount" value="{{$salary}}" required>
                 @if($errors->has('amount'))
                     <div class="invalid-feedback">
                         {{ $errors->first('amount') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('amount') }}</span>
             </div>
             
             <div class="form-group">
@@ -91,6 +90,7 @@ din (totalul de ore: 8xnr de zile)</p>
                 </button>
             </div>
         </form>
+        </div>
     </div>
 </div>
 

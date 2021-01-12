@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+<div class="btn-group" role="group" aria-label="Basic example">
 @can('working_hour_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -9,6 +10,7 @@
         </div>
     </div>
 @endcan
+@can('raport_access')
 <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route('admin.raport') }}">
@@ -16,9 +18,9 @@
             </a>
         </div>
     </div>
-
+@endcan
+</div>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
-<h3 class="page-title">Calendar</h3>
 
 <form action="" method="GET">
     <div class="row">
@@ -36,6 +38,8 @@
         </div>
     </div>
 </form>
+
+<h3 class="page-title"> {{ trans('global.calendar') }}</h3>
 <div id="calendar"></div>
 
 @endsection

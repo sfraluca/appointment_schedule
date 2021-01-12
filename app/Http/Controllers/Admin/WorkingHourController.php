@@ -445,41 +445,16 @@ class WorkingHourController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('working_hour_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        
-        // if ($request->ajax()) {
-            // $query = WorkingHour::with(['employee', 'project', 'created_by'])->select(sprintf('%s.*', (new WorkingHour)->table));
-            // $table = Datatables::of($query);
+     
             $table = WorkingHour::all();
 
-            // $employees = DB::table('employees')->get();
-            // dd($table);
-
-            //fac totalul orelor lucrate de un angajat pe o luna
-            //in calendar sa se afizeze appointmentul facut de un angajat (employee_id)
-           
-            // $diff_arr = [];
-            // foreach($table as $hours) {
-
-            //     $t1 = Carbon::parse( $hours->date . ' ' . $hours->start_time);
-            //     $t2 = Carbon::parse( $hours->date . ' ' . $hours->finish_time);
-            //     $diff = $t1->diff($t2);
-            //     $diff_arr[] = $diff;
-            // }
             $q = WorkingHour::with('employee')
                 ->orderBy('id','asc');
             if ($request->has('employee')) {
                 $q->where('employee_id', $request->employee);
-                
-            }
-            $working_hours = $q->get();
-                // dd($working_hours);
-            // $diff_arr = [];
-            foreach($working_hours as $hours) {
-
-                $t1 = Carbon::parse( $hours->date . ' ' . $hours->start_time);
-                $t2 = Carbon::parse( $hours->date . ' ' . $hours->finish_time);
-                // $diff = $t1->diff($t2);
-                // $diff_arr[] = $diff->format('%H:%I:%S');
+                $working_hours = $q->get();
+            } else {
+                $working_hours = [];
             }
 
             $employees = Employee::all()->pluck('first_name', 'id')->prepend(trans('global.pleaseSelect'), '');
@@ -489,52 +464,9 @@ class WorkingHourController extends Controller
              } else {
                  $currentEmployee = '';
              } 
+
         return view('admin.workingHours.index',compact('working_hours','employees','currentEmployee'));
-        //     dd($table);
-        //     $table->addColumn('placeholder', '&nbsp;');
-        //     $table->addColumn('actions', '&nbsp;');
-
-        //     $table->editColumn('actions', function ($row) {
-        //         $viewGate      = 'working_hour_show';
-        //         $editGate      = 'working_hour_edit';
-        //         $deleteGate    = 'working_hour_delete';
-        //         $crudRoutePart = 'working-hours';
-
-        //         return view('partials.datatablesActions', compact(
-        //             'viewGate',
-        //             'editGate',
-        //             'deleteGate',
-        //             'crudRoutePart',
-        //             'row'
-        //         ));
-        //     });
-
-        //     $table->editColumn('id', function ($row) {
-        //         return $row->id ? $row->id : "";
-        //     });
-        //     $table->addColumn('employee_first_name', function ($row) {
-        //         return $row->employee ? $row->employee->first_name : '';
-        //     });
-
-        //     $table->editColumn('employee.last_name', function ($row) {
-        //         return $row->employee ? (is_string($row->employee) ? $row->employee : $row->employee->last_name) : '';
-        //     });
-
-        //     $table->editColumn('start_time', function ($row) {
-        //         return $row->start_time ? $row->start_time : "";
-        //     });
-        //     $table->editColumn('finish_time', function ($row) {
-        //         return $row->finish_time ? $row->finish_time : "";
-        //     });
-        //     $table->addColumn('project_name', function ($row) {
-        //         return $row->project ? $row->project->name : '';
-        //     });
-
-        //     $table->rawColumns(['actions', 'placeholder', 'employee', 'project']);
-        //     return $table->make(true);
-        // // }
-
-        // return view('admin.workingHours.index');
+      
     }
 
     public function create()

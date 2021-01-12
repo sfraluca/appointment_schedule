@@ -7,6 +7,8 @@ use Gate;
 use App\Models\Employee;
 use App\Models\Employment;
 use App\Models\WorkingHour;
+use App\Models\WorkingDays;
+
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
@@ -21,11 +23,11 @@ use Stripe\Error\Card;
 
 class PaymentController extends Controller
 {
-
+   
     public function payment(Request $request)
     { 
         // abort_if(Gate::denies('payment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        
+           
         $last_month = WorkingHour::with('employee')
                 ->select(['id','employee_id',
                 \DB::raw("DATE_FORMAT(date,'%M') as month"),
@@ -39,13 +41,15 @@ class PaymentController extends Controller
                 ->groupBy('employee_id')
                 ->groupBy('month')
                 ->orderBy('month','desc');
+        
         if ($request->has('employee')) {
             $last_month->where('employee_id', $request->employee);
             $employments = Employment::all()->where('employee_id', $request->employee);
+            $working_days = WorkingDays::all()->where('employee_id', $request->employee);
         }
         $last_month_q = $last_month->get();
         // $employments_q = $employments->get();
-        // dd($employments);
+        // dd($last_month_q);
         $employees = Employee::all()->pluck('first_name', 'id')->prepend(trans('global.pleaseSelect'), '');
        
         // dd($employments);
@@ -57,25 +61,46 @@ class PaymentController extends Controller
            
             // dd($currentEmployment);
             foreach($last_month_q as $item_lm) {
+                 $working_month = $working_days->where('month','=', $item_lm->month);
                 
-                $totalTime_lm = $totalTime_lm + strtotime("1970-01-01 $item_lm->hours UTC");
+                
+                $totalTime_lm = $totalTime_lm + intval($item_lm->hours);
                 $totalHours_lm = gmdate("H", $totalTime_lm); 
+                 
                 $report_lm[$item_lm->month] = [
-                    'hours'=> $totalHours_lm,
-                ];
+                    'hours'=> $totalTime_lm,
+                ]; 
+               
                 foreach($employments as $employee_salary) {
                     
-                     $salary = $totalHours_lm * $employee_salary->money;
-                    //  dd($salary);
+                     $salary = $totalTime_lm * $employee_salary->money;
+                     $employments_hour = $employee_salary->hour;
+                    
+                }
+                foreach($working_month as $days) {
+                      $month_days = $days->days;
                 }
                
-                
+                $month_hours = $month_days * $employments_hour;
+               
+                if($totalTime_lm > $month_hours) {
+
+                    $diff = $totalTime_lm - $month_hours;
+                     
+                    $bonus = $diff * ($salary*5/100);
+                    
+                    $salary = $salary + $bonus;
+                   
+                }
+               
             }  
         
         } else {
             $currentEmployee = '';
+            $month_hours = '';
         } 
-        return view('admin.payment.payment', compact('report_lm','employees','currentEmployee','salary'));
+        // dd($report_lm);
+        return view('admin.payment.payment', compact('report_lm','employees','currentEmployee','salary','month_hours'));
     }
     public function payment_post(Request $request) {
         $validator = Validator::make($request->all(), [

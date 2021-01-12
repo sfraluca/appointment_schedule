@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'profile'                               => 'Profil',
+    'raport'                               => 'Raport',
     'actions'                              => 'Actions',
     'add'                                  => 'Add',
     'allRightsReserved'                    => 'All rights reserved.',

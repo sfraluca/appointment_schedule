@@ -15,7 +15,8 @@ Route::get('/home', function () {
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/dashboard', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@profile')->name('profile');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');
@@ -36,12 +37,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('employees/destroy', 'EmployeesController@massDestroy')->name('employees.massDestroy');
     Route::resource('employees', 'EmployeesController');
 
+    // Working Days
+    Route::delete('working_days/destroy', 'WorkingDaysController@massDestroy')->name('working_days.massDestroy');
+    Route::resource('working_days', 'WorkingDaysController');
+
     // Working Hours
     Route::delete('working-hours/destroy', 'WorkingHourController@massDestroy')->name('working-hours.massDestroy');
     Route::resource('working-hours', 'WorkingHourController');
     Route::get('/raport', 'WorkingHourController@raport')->name('raport');
     Route::get('/payment', 'PaymentController@payment')->name('payment');
     Route::post('/payment_post', 'PaymentController@payment_post');
+    Route::post('/add_days', 'PaymentController@add_days');
+    
 
     // Appointments
     Route::delete('appointments/destroy', 'AppointmentsController@massDestroy')->name('appointments.massDestroy');

@@ -94,13 +94,14 @@
                                         <a class="page-scroll" href="#facts">Why</a>
                                     </li>
                                 </ul>
-                            </div> <!-- navbar collapse -->
+                            </div> 
+                            <!-- navbar collapse -->
                                <!-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0"> -->
                                     <div class="navbar-btn d-none d-sm-inline-block">
                                     @if (Route::has('login'))
                                         <!-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> -->
                                             @auth
-                                                <a href="{{ url('/home') }}" class="main-btn">Home</a>
+                                                <a href="{{ url('/home') }}" class="main-btn">Dashboard</a>
                                             @else
                                                 <a href="{{ route('login') }}" class="main-btn">Login</a>
 

@@ -3,9 +3,147 @@
 namespace App\Http\Controllers\Admin;
 
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
-
+use App\Models\Employment;
+use App\Models\Employee;
+use App\Models\User;
+use DB;
+use App\Models\WorkingHour;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 class HomeController
 {
+    
+    public function profile () {
+        // $employee = Employee::all();
+        $user_auth = Auth::user();
+        
+        $users = User::select('id','employee_id')
+        ->where('id','=', $user_auth->id)
+        ->get();
+      
+        foreach($users as $employee) {
+            $employees = DB::table('employees')
+            ->where('employees.id','=', $employee->employee_id)
+            ->leftJoin('employment','employees.id','=','employment.employee_id')
+            ->get();
+        
+
+        $current_year = WorkingHour::with('employee')
+                    ->select(['id','employee_id',
+                    \DB::raw("DATE_FORMAT(date,'%Y') as year"),
+                    \DB::raw("TIMEDIFF(finish_time, start_time) as hours")])
+                    ->whereBetween('date', [
+                                Carbon::now()->startOfYear(),
+                                Carbon::now()->endOfYear(),
+                            ])
+                    ->where('working_hours.employee_id','=', $employee->employee_id)
+                    ->groupBy('id') 
+                    ->groupBy('hours') 
+                    ->groupBy('employee_id')
+                    ->groupBy('year')
+                    ->orderBy('year','desc');
+        $last_year = WorkingHour::with('employee')
+                    ->select(['id','employee_id',
+                    \DB::raw("DATE_FORMAT(date,'%Y') as year"),
+                    \DB::raw("TIMEDIFF(finish_time, start_time) as hours")])
+                    ->whereBetween('date', [
+                                Carbon::now()->startOfYear()->subYear(1),
+                                Carbon::now()->endOfMonth()->subYear(1),
+                            ])
+                    ->where('working_hours.employee_id','=', $employee->employee_id)
+                    ->groupBy('id') 
+                    ->groupBy('hours') 
+                    ->groupBy('employee_id')
+                    ->groupBy('year')
+                    ->orderBy('year','desc');
+        $current_month = WorkingHour::with('employee')
+                    ->select(['id','employee_id',
+                    \DB::raw("DATE_FORMAT(date,'%Y-%M') as month"),
+                    \DB::raw("TIMEDIFF(finish_time, start_time) as hours")])
+                    ->whereBetween('date', [
+                                Carbon::now()->startOfMonth(),
+                                Carbon::now()->endOfMonth(),
+                            ])
+                    ->where('working_hours.employee_id','=', $employee->employee_id)
+                    ->groupBy('id') 
+                    ->groupBy('hours') 
+                    ->groupBy('employee_id')
+                    ->groupBy('month')
+                    ->orderBy('month','desc');
+    
+    
+        $last_month = WorkingHour::with('employee')
+                    ->select(['id','employee_id',
+                    \DB::raw("DATE_FORMAT(date,'%Y-%M') as month"),
+                    \DB::raw("TIMEDIFF(finish_time, start_time) as hours")])
+                    ->whereBetween('date', [
+                                Carbon::now()->startOfMonth()->subMonth(),
+                                Carbon::now()->endOfMonth()->subMonth(),
+                            ])
+                    ->where('working_hours.employee_id','=', $employee->employee_id)
+                    ->groupBy('id') 
+                    ->groupBy('hours') 
+                    ->groupBy('employee_id')
+                    ->groupBy('month')
+                    ->orderBy('month','desc');
+                // if ($request->has('employee')) {
+                //         $current_month->where('employee_id', $request->employee);
+                //         $last_month->where('employee_id', $request->employee);
+        
+                //         $last_year->where('employee_id', $request->employee);
+                //         $current_year->where('employee_id', $request->employee);
+                        
+                // }
+                $current_month_q = $current_month->get();
+                $last_month_q = $last_month->get();
+                $current_year_q = $current_year->get();
+                $last_year_q = $last_year->get();
+                $report_cy = [];
+                $report_ly = [];
+                $report_cm = [];
+                $report_lm = [];
+                $totalTime_cm = 0;
+                $totalTime_lm = 0;
+                $totalTime_cy = 0;
+                $totalTime_ly = 0;
+                
+                foreach($current_year_q as $item_cy) {
+               
+                    $totalTime_cy = $totalTime_cy + strtotime("1970-01-01 $item_cy->hours UTC");
+                    $totalHours_cy = gmdate("H:i:s", $totalTime_cy); 
+                    //  dd($totalHours_cy);
+                    $report_cy[$item_cy->month] = [
+                        'hours'=> $totalHours_cy,
+                    ];
+                }
+                foreach($last_year_q as $item_ly) {
+                    $totalTime_ly = $totalTime_cm + strtotime("1970-01-01 $item_ly->hours UTC");
+                    $totalHours_ly = gmdate("H:i:s", $totalTime_ly); 
+                    $report_ly[$item_ly->month] = [
+                        'hours'=> $totalHours_ly,
+                    ];
+                }
+    
+    
+                foreach($current_month_q as $item_cm) {
+                        $totalTime_cm = $totalTime_cm + strtotime("1970-01-01 $item_cm->hours UTC");
+                        $totalHours_cm = gmdate("H:i:s", $totalTime_cm); 
+                        $report_cm[$item_cm->month] = [
+                            'hours'=> $totalHours_cm,
+                        ];
+                    }
+                foreach($last_month_q as $item_lm) {
+                    
+                    $totalTime_lm = $totalTime_lm + strtotime("1970-01-01 $item_lm->hours UTC");
+                    $totalHours_lm = gmdate("H:i:s", $totalTime_lm); 
+                    $report_lm[$item_lm->month] = [
+                        'hours'=> $totalHours_lm,
+                    ];
+                }  
+        }
+        return view('user.profile', compact('employees','report_cy','report_ly','report_cm','report_lm'));
+    }
     public function index()
     {
         $settings1 = [
@@ -223,4 +361,6 @@ class HomeController
 
         return view('home', compact('settings1', 'settings2', 'settings3', 'settings4', 'chart5', 'chart6'));
     }
+
+
 }
