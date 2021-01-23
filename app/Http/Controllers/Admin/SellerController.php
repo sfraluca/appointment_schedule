@@ -37,7 +37,7 @@ class SellerController extends Controller
     public function login() 
     {
         $user = Auth::user();
-        Stripe::setApiKey(confih('serivesc.stripe.secret'));
+        Stripe::setApiKey(confih('services.stripe.secret'));
         $account_link = Account::createLoginLink($user->stripe_connect_id);
         return redirect($account_link->url);
     }
