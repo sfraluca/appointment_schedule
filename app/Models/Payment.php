@@ -17,7 +17,7 @@ class Payment extends Model
 
     public function customer()
     {
-        return $this->hasOne(User::class, 'customer_id');
+        return $this->hasOne(Employee::class, 'customer_id');
     }
 
 }

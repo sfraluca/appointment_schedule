@@ -24,74 +24,67 @@
 
 
 
-<p>Angajatul a lucrat 
+<!-- <p>Angajatul a lucrat 
     @foreach($report_lm as $month =>$value_lm)
     pe luna {{ \Carbon\Carbon::parse($month)->format('F')}} : {{ $value_lm['hours']}}
     @endforeach
 
 din  <span>{{$month_hours}}</span>h</p>
-<p>Salariul este de: {{$salary}} lei</p>
-<div class="card">
-    <div class="card-body">
-    
-        <form method="POST" action="{{ url('admin/payment_post') }}" enctype="multipart/form-data">
+<p>Salariul este de: {{$salary}} lei</p> -->
+
+<div>
+<form method="POST" action="{{ url('admin/salary_save')}}">
             @csrf
             <div class="form-group">
-                <label class="required" for="card_no">{{ trans('card_no') }}</label>
-                <input class="form-control integer {{ $errors->has('card_no') ? 'is-invalid' : '' }}" type="text" name="card_no" id="card_no" value="{{ old('card_no') }}" required>
-                @if($errors->has('card_no'))
+                <label for="employee">Angajatul:</label>
+                <input class="form-control {{ $errors->has('employee_id') ? 'is-invalid' : '' }}" type="text" name="employee_id" id="employee_id" value="{{ $key }}" @if ($key==$currentEmployee) selected @endif>
+                <input class="form-control {{ $errors->has('employee') ? 'is-invalid' : '' }}" type="text" name="employee" id="employee" value="{{ $value }}" @if ($key==$currentEmployee)  @endif>
+              
+                @if($errors->has('employee'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('card_no') }}
-                    </div>
-                @endif
-            </div>
-            <div class="row">
-            <div class="form-group col">
-                <label class="required" for="exp_month">{{ trans('exp_month') }}</label>
-                <input class="form-control integer {{ $errors->has('exp_month') ? 'is-invalid' : '' }}" type="text" name="exp_month" id="exp_month" value="{{ old('exp_month') }}" required>
-                @if($errors->has('exp_month'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('exp_month') }}
-                    </div>
-                @endif
-            </div>
-            <div class="form-group col">
-                <label class="required" for="exp_year">{{ trans('exp_year') }}</label>
-                <input class="form-control integer {{ $errors->has('exp_year') ? 'is-invalid' : '' }}" type="text" name="exp_year" id="exp_year" value="{{ old('exp_year') }}" required>
-                @if($errors->has('exp_year'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('exp_year') }}
-                    </div>
-                @endif
-            </div>
-            </div>
-            <div class="form-group">
-                <label class="required" for="cvv_no">{{ trans('cvv_no') }}</label>
-                <input class="form-control integer {{ $errors->has('cvv_no') ? 'is-invalid' : '' }}" type="text" name="cvv_no" id="cvv_no" value="{{ old('cvv_no') }}" required>
-                @if($errors->has('cvv_no'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('cvv_no') }}
+                        {{ $errors->first('employee') }}
                     </div>
                 @endif
             </div>
             <div class="form-group">
-                <label class="required" for="amount">{{ trans('amount') }}</label>
-                <input class="form-control integer {{ $errors->has('amount') ? 'is-invalid' : '' }}" type="text" name="amount" id="amount" value="{{$salary}}" required>
-                @if($errors->has('amount'))
+                <label for="month">Luna:</label>
+                @foreach($report_lm as $month =>$value_lm)
+            <input class="form-control {{ $errors->has('month') ? 'is-invalid' : '' }}" type="text" name="month" id="month" value=" {{ \Carbon\Carbon::parse($month)->format('F')}}">
+              @endforeach
+                @if($errors->has('month'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('amount') }}
+                        {{ $errors->first('month') }}
                     </div>
                 @endif
             </div>
-            
+            <div class="form-group">
+                <label for="hours">Ore/<span>{{$month_hours}}</span>h</label>
+                @foreach($report_lm as $month =>$value_lm)
+                <input class="form-control {{ $errors->has('hours') ? 'is-invalid' : '' }}" type="text" name="hours" id="hours" value="{{  $value_lm['hours'] }}" >
+                @endforeach
+                @if($errors->has('hours'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('hours') }}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group">
+                <label for="salary">Salariul:</label>
+                <input class="form-control {{ $errors->has('salary') ? 'is-invalid' : '' }}" type="text" name="salary" id="salary" value="{{ $salary }}">
+              
+                @if($errors->has('salary'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('salary') }}
+                    </div>
+                @endif
+            </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
-                    {{ trans('global.pay') }}
+                   Save(opțional)
                 </button>
             </div>
         </form>
-        </div>
-    </div>
 </div>
+
 
 @endsection

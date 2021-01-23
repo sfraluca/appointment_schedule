@@ -16,7 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('users');
+            $table->foreign('customer_id')->references('id')->on('employees');
             $table->integer('product');
             $table->string('stripe_charge_id');
             $table->double('paid_out', 8, 2);

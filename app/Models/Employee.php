@@ -28,6 +28,7 @@ class Employee extends Model
     protected $fillable = [
         'first_name',
         'last_name',
+        'stripe_connect_id',
         'phone',
         'email',
         'created_at',
@@ -48,5 +49,9 @@ class Employee extends Model
     public function employments()
     {
          return $this->hasMany(Employments::class); 
+    }
+    public function salary()
+    {
+         return $this->hasMany(Salary::class); 
     }
 }

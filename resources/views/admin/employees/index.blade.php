@@ -31,6 +31,9 @@
                         {{ trans('cruds.employee.fields.last_name') }}
                     </th>
                     <th>
+                        {{ trans('cruds.employee.fields.stripe_connect_id') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.employee.fields.phone') }}
                     </th>
                     <th>
@@ -95,6 +98,7 @@
 { data: 'id', name: 'id' },
 { data: 'first_name', name: 'first_name' },
 { data: 'last_name', name: 'last_name' },
+{ data: 'stripe_connect_id', name: 'stripe_connect_id' },
 { data: 'phone', name: 'phone' },
 { data: 'email', name: 'email' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

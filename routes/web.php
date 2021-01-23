@@ -45,7 +45,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('working-hours/destroy', 'WorkingHourController@massDestroy')->name('working-hours.massDestroy');
     Route::resource('working-hours', 'WorkingHourController');
     Route::get('/raport', 'WorkingHourController@raport')->name('raport');
+
     Route::get('/payment', 'PaymentController@payment')->name('payment');
+    Route::get('/stripe_form', 'PaymentController@stripe_form')->name('stripe_form');
+
+    Route::post('/salary_save', 'PaymentController@salary_save');
+
     Route::post('/payment_post', 'PaymentController@payment_post');
     Route::post('/add_days', 'PaymentController@add_days');
     

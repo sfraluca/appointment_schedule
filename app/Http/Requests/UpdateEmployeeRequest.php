@@ -25,6 +25,10 @@ class UpdateEmployeeRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'stripe_connect_id' => [
+                'string',
+                'nullable',
+            ],
             'phone'      => [
                 'string',
                 'nullable',

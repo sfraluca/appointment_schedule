@@ -30,6 +30,16 @@
                 <span class="help-block">{{ trans('cruds.employee.fields.last_name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="stripe_connect_id">{{ trans('cruds.user.fields.stripe_id') }}</label>
+                <input class="form-control {{ $errors->has('stripe_connect_id') ? 'is-invalid' : '' }}" type="text" name="stripe_connect_id" id="stripe_connect_id" value="{{ old('stripe_connect_id', '') }}" required>
+                @if($errors->has('stripe_connect_id'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('stripe_connect_id') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.name_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="phone">{{ trans('cruds.employee.fields.phone') }}</label>
                 <input class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" type="text" name="phone" id="phone" value="{{ old('phone', '') }}">
                 @if($errors->has('phone'))
