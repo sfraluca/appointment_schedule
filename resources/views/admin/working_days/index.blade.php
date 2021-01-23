@@ -22,16 +22,16 @@
 
                     </th>
                     <th>
-                        {{ trans('cruds.working_days.fields.id') }}
+                        ID
                     </th>
                     <th>
-                        {{ trans('cruds.working_days.fields.month') }}
+                        Lună
                     </th>
                     <th>
-                        {{ trans('cruds.working_days.fields.days') }}
+                        Zile
                     </th>
                     <th>
-                        {{ trans('cruds.working_days.fields.employee') }}
+                        Angajați
                     </th>
                     <th>
                         &nbsp;
@@ -54,7 +54,7 @@
                                 {{ $working_day->days ?? '' }}
                             </td>
                             <td>
-                                {{ $working_day->employee_id ?? '' }}
+                                {{ $working_day->first_name ?? '' }}  {{ $working_day->last_name ?? '' }}
                             </td>
                             <td>
                                 @can('working_day_show')

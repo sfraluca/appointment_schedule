@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.appointments.index') }}">
+                <a class="btn btn-default" href="{{ route('admin.working_days.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -17,40 +17,40 @@
                 <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.employment.fields.id') }}
+                            ID
                         </th>
                         <td>
-                            {{ $employment->id }}
+                            {{ $workingsDays->id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.employment.fields.employee') }}
+                            Lună
                         </th>
                         <td>
-                            {{ $employment->employee->first_name ?? '' }}
+                            {{ $workingsDays->month }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.employment.fields.hour') }}
+                           Zile
                         </th>
                         <td>
-                            {{ $employment->hour }}
+                            {{ $workingsDays->days }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.employment.fields.money') }}
+                            Angajați
                         </th>
                         <td>
-                            {{ $appointment->money }}
+                            {{ $workingsDays->employee->first_name ?? '' }}
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.employments.index') }}">
+                <a class="btn btn-default" href="{{ route('admin.working_days.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>

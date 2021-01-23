@@ -22,31 +22,6 @@ class WorkingHourController extends Controller
     {
         abort_if(Gate::denies('working_hour_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
-       
-            //original code, don't tauch!
-            // $diff_arr = [];
-            // foreach($table as $hours) {
-
-            //     $t1 = Carbon::parse( $hours->date . ' ' . $hours->start_time);
-            //     $t2 = Carbon::parse( $hours->date . ' ' . $hours->finish_time);
-            //     $diff = $t1->diff($t2);
-            //     $diff_arr[] = $diff;
-            // }    
-            // $q = WorkingHour::with('employee')
-            //     // ->selectRaw("DATE_FORMAT(date,'%M %Y') as month")
-            //     ->select(['id','start_time','finish_time','employee_id','project_id','date'
-            //     // \DB::raw("DATE_FORMAT(date,'%M %Y') as month")
-            //     ])
-            //     ->groupBy('id') 
-            //     ->groupBy('start_time') 
-            //     ->groupBy('finish_time')
-            //     ->groupBy('employee_id')
-            //     ->groupBy('project_id')
-            //     ->groupBy('date')
-            //     ->orderBy('id','asc');
-
-
-                    //    $month[] = $item->whereMonth('date',$i);
             $current_year = WorkingHour::with('employee')
                     ->select(['id','employee_id',
                     \DB::raw("DATE_FORMAT(date,'%Y') as year"),
@@ -282,9 +257,6 @@ class WorkingHourController extends Controller
             $current_year_q = $current_year->get();
             $last_year_q = $last_year->get();
 
-            // dd($current_year_q);
-
-            //get the employees for select form
             $employees = Employee::all()->pluck('first_name', 'id')->prepend(trans('global.pleaseSelect'), '');
             $report_cy = [];
             $report_ly = [];
@@ -318,6 +290,7 @@ class WorkingHourController extends Controller
 
             $totalTime_cy = 0;
             $totalTime_ly = 0;
+
             //get the employee from the select and structure the table
             if($request->has('employee')) {
             $currentEmployee = $request->get('employee');
@@ -327,7 +300,8 @@ class WorkingHourController extends Controller
                
                 $totalTime_cy = $totalTime_cy + strtotime("1970-01-01 $item_cy->hours UTC");
                 $totalHours_cy = gmdate("H:i:s", $totalTime_cy); 
-                //  dd($totalHours_cy);
+               
+                
                 $report_cy[$item_cy->month] = [
                     'hours'=> $totalHours_cy,
                 ];
@@ -438,7 +412,6 @@ class WorkingHourController extends Controller
                 $currentEmployee = '';
             } 
 
-            // dd($report_cy);
         return view('admin.workingHours.raport',compact('report_cy','report_ly','report_cm','report_lm','report_l2m','report_l3m','report_l4m','report_l5m','report_l6m','report_l7m','report_l8m','report_l9m','report_l9m','report_l10m','report_l10m','report_l11m','report_l12m','employees','currentEmployee'));
     }
 

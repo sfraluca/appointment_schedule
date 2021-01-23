@@ -30,44 +30,7 @@ class EmploymentsController extends Controller
 
     public function index(Request $request)
     {
-        // abort_if(Gate::denies('employment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        // if ($request->ajax()) {
-        //     $query = Employment::with(['employee', 'created_by'])->select(sprintf('%s.*', (new Employment)->table));
-        //     $table = Datatables::of($query);
-
-        //     $table->addColumn('placeholder', '&nbsp;');
-        //     $table->addColumn('actions', '&nbsp;');
-
-        //     $table->editColumn('actions', function ($row) {
-        //         $viewGate      = 'employment_show';
-        //         $editGate      = 'employment_edit';
-        //         $deleteGate    = 'employment_delete';
-        //         $crudRoutePart = 'employments';
-
-        //         return view('partials.datatablesActions', compact(
-        //             'viewGate',
-        //             'editGate',
-        //             'deleteGate',
-        //             'crudRoutePart',
-        //             'row'
-        //         ));
-        //     });
-
-        //     $table->editColumn('id', function ($row) {
-        //         return $row->id ? $row->id : "";
-        //     });
-        //     $table->addColumn('employee_first_name', function ($row) {
-        //         return $row->employee ? $row->employee->first_name : '';
-        //     });
-
-        //     $table->editColumn('employee.last_name', function ($row) {
-        //         return $row->employee ? (is_string($row->employee) ? $row->employee : $row->employee->last_name) : '';
-        //     });
-        //     $table->rawColumns(['actions', 'placeholder', 'employee']);
-           
-        //     return $table->make(true);
-        // }
+        
         $employments = Employment::all();
 
         return view('admin.employments.index', compact('employments'));
@@ -89,7 +52,7 @@ class EmploymentsController extends Controller
             'hour' => 'required',
             'money' =>'required'
             ]);
-            // dd($request->all());
+            
         $employment = $this->employments->registerEmployment($request->all());
         
         return redirect()->route('admin.employments.index');

@@ -94,14 +94,14 @@
     aaSorting: [],
     ajax: "{{ route('admin.employees.index') }}",
     columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'first_name', name: 'first_name' },
-{ data: 'last_name', name: 'last_name' },
-{ data: 'stripe_connect_id', name: 'stripe_connect_id' },
-{ data: 'phone', name: 'phone' },
-{ data: 'email', name: 'email' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
+        { data: 'placeholder', name: 'placeholder' },
+        { data: 'id', name: 'id' },
+        { data: 'first_name', name: 'first_name' },
+        { data: 'last_name', name: 'last_name' },
+        { data: 'stripe_connect_id', name: 'stripe_connect_id' },
+        { data: 'phone', name: 'phone' },
+        { data: 'email', name: 'email' },
+        { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],

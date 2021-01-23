@@ -19,7 +19,6 @@ use Input;
 use Redirect;
 use Illuminate\Support\Arr;
 use App\Services\Stripe\Customer;
-// use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Stripe\Error\Card;
 use Stripe\Charge;
 use Stripe\Transfer;
@@ -42,8 +41,6 @@ class PaymentController extends Controller
     }
     public function payment(Request $request)
     { 
-        // abort_if(Gate::denies('payment_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-           
         $last_month = WorkingHour::with('employee')
                 ->select(['id','employee_id',
                 \DB::raw("DATE_FORMAT(date,'%M') as month"),
@@ -62,14 +59,11 @@ class PaymentController extends Controller
             $last_month->where('employee_id', $request->employee);
             $employments = Employment::all()->where('employee_id', $request->employee);
             $working_days = WorkingDays::all()->where('employee_id', $request->employee); 
-            // dd($employments);
+           
         }
         $last_month_q = $last_month->get();
-        // $employments_q = $employments->get();
-        // dd($last_month_q);
         $employees = Employee::all()->pluck('first_name', 'id')->prepend(trans('global.pleaseSelect'), '');
        
-        // dd($employments);
         $report_lm = [];
         $totalTime_lm = 0;
         $salary = 0;
@@ -77,7 +71,6 @@ class PaymentController extends Controller
         if($request->has('employee')) {
             $currentEmployee = $request->get('employee');
            
-            // dd($currentEmployee);
             foreach($last_month_q as $item_lm) {
                 $working_month = $working_days->where('month','=', $item_lm->month);
                 
@@ -120,7 +113,6 @@ class PaymentController extends Controller
         } 
 
        
-        // dd($month_hours);
         return view('admin.payment.payment', compact('report_lm','employees','currentEmployee','salary','month_hours'));
     }
     public function salary_save(Request $request)
@@ -153,14 +145,14 @@ class PaymentController extends Controller
         ->leftJoin('employees','salaries.employee_id','=','employees.id')
         ->where('employees.id','=', $salary->employee_id)
         ->orderBy('employees.id', 'asc')->first();
-        // ->last();
+       
         $admin = DB::table('users')
         ->leftJoin('employees','users.employee_id','=','employees.id')
         ->first();
         $customer = User::all()->first();
        
         $payout = $salary->salary;
-        // dd($payout);
+       
         $validator = Validator::make($request->all(), [
             'card_no' => 'required',
             'exp_month' => 'required',
@@ -175,24 +167,19 @@ class PaymentController extends Controller
          
             $input = Arr::except($input, array('_token')); 
             Stripe::setApiKey('sk_test_51HzJSZAaJ4UqVroF6LhwjQGKTvlcU36AX33YWkf7Tjz9fhc3wNtXOEgdSQLTZ7pumWVhtRhNUy8KgqlMubtk5RZl00M0dJjLfh');
-            // $stripe = Stripe::make('sk_test_51HzJSZAaJ4UqVroF6LhwjQGKTvlcU36AX33YWkf7Tjz9fhc3wNtXOEgdSQLTZ7pumWVhtRhNUy8KgqlMubtk5RZl00M0dJjLfh');
-            
+         
             $charge = Charge::create([
                 'amount' => self::toStripeFormat($salary->salary),
                 'currency'=> 'RON',
                 'customer' => $admin->stripe_connect_id,
-                // 'customer'=> 'cus_InZVfrWOjkOYI9',
                 'description' => 'Pay by stripe',
             ]);
-// dd($charge->amount);
             $transfer = Transfer::create([
                 'amount' => self::toStripeFormat($payout),
                 'currency' => 'ron',
                 'source_transaction' => $charge->id,
                 'destination' => 'acct_1I8lgtPEyLJQDTSC'
               ]);
-            //   dd($transfer);
-                    //save transaction
                 $payment = new Payment();
                 $payment->customer_id = $customer->id;
                 $payment->product = $salary->salary;
@@ -200,8 +187,6 @@ class PaymentController extends Controller
                 $payment->paid_out = $payout;
                 $payment->fees_colected = $salary->salary - $payout;
                 $payment->save(); 
-                //Customer::save($user, $card);
-                    // dd($employee_account);
             
  
         }

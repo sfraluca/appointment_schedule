@@ -59,8 +59,8 @@ $(document).ready(function () {
                 {
                     title : '{{ $hour->employee->first_name . '' . $hour->employee->last_name}}',
                     start : '{{ $hour->date . ' ' . $hour->start_time }}',
-                    end : '{{ $hour->date . ' ' . $hour->finish_time}}'
-                    // url : '{{ url('admin.workingHours.edit'), $hour->id }}'
+                    end : '{{ $hour->date . ' ' . $hour->finish_time}}',
+                    url : "{{ route('admin.working-hours.edit', $hour->id) }}"
                 },
                 @endforeach
             ]
