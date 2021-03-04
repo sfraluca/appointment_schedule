@@ -1,6 +1,14 @@
 @extends('layouts.admin')
 @section('content')
-@can('working_hour_create')
+<div class='row'>
+<div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-secondary" href="{{ route('admin.working-hours.index') }}">
+                {{ trans('global.back') }}
+            </a>
+        </div>
+    </div>
+    @can('working_hour_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route('admin.working-hours.create') }}">
@@ -9,22 +17,8 @@
         </div>
     </div>
 @endcan
-@can('working_hour_create')
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.working-hours.create') }}">
-                {{ trans('global.pay') }} {{ trans('cruds.workingHour.title_singular') }}
-            </a>
-        </div>
-    </div>
-@endcan
-<div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.working-hours.index') }}">
-                {{ trans('global.back') }}
-            </a>
-        </div>
-    </div>
+
+</div>
 
   <h3 class="page-title">Raport</h3>
   <form action="" method="GET">
@@ -54,8 +48,8 @@
                 <thead>
                     <tr>
                         <th width="10"></th>
-                        <th>Month</th>
-                        <th>Total Hours</th>
+                        <th>Lună</th>
+                        <th>Ore</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -171,10 +165,10 @@
             </div> 
             <div class="row">
 
-            <div class="col-md-6 stretch-card grid-margin">
-              <div class="card bg-gradient-danger card-img-holder text-white">
+            <div class="col-md-6 stretch-card grid-margin" >
+              <div class="card card-img-holder text-white" style="background-color: #faab9f;" >
                 <div class="card-body">
-                  <h4 class="font-weight-normal mb-2"> @lang('current_year')
+                  <h4 class="font-weight-normal mb-2"> Anul curent
                     <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                   </h4>
                   <h2 class="mb-5"> @foreach($report_cy as $month =>$value_cy)
@@ -184,9 +178,9 @@
               </div>
             </div>
             <div class="col-md-6 stretch-card grid-margin">
-              <div class="card bg-gradient-danger card-img-holder text-white">
+              <div class="card card-img-holder text-white" style="background-color: #59bac0;">
                 <div class="card-body">
-                  <h4 class="font-weight-normal mb-2"> @lang('last_year')
+                  <h4 class="font-weight-normal mb-2"> Anul trecut
                     <i class="mdi mdi-chart-line mdi-24px float-right"></i>
                   </h4>
                   <h2 class="mb-5"> @foreach($report_ly as $month =>$value_ly)

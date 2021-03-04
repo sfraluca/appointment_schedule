@@ -94,7 +94,7 @@
                 </a>
             </li>
         @endcan
-        @can('employee_access')
+        @can('employement_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.employments.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/employments") || request()->is("admin/employments/*") ? "active" : "" }}">
                     <i class="fa-fw fas fa-suitcase c-sidebar-nav-icon">
@@ -130,7 +130,7 @@
                     <i class="fa-fw fas fa-hourglass c-sidebar-nav-icon">
 
                     </i>
-                    {{ trans('cruds.workingDays.title') }}
+                    Zile de lucru
                 </a>
             </li>
         @endcan

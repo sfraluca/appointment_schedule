@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    Panou control
                 </div>
 
                 <div class="card-body">
@@ -16,48 +16,48 @@
                     @endif
 
                     <div class="row">
-                        <div class="{{ $settings1['column_class'] }}">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body pb-0">
+                        <div class="{{ $settings1['column_class'] }}" >
+                            <div class="card text-white bg-primary" style="border-color: #59bac0;">
+                                <div class="card-body pb-0" style="background-color: #59bac0; ">
                                     <div class="text-value">{{ number_format($settings1['total_number']) }}</div>
-                                    <div>{{ $settings1['chart_title'] }}</div>
+                                    <div>Clienți</div>
                                     <br />
                                 </div>
                             </div>
                         </div>
                         <div class="{{ $settings2['column_class'] }}">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body pb-0">
+                            <div class="card text-white bg-primary" style="border-color: #e590b5;">
+                                <div class="card-body pb-0" style="background-color: #e590b5; ">
                                     <div class="text-value">{{ number_format($settings2['total_number']) }}</div>
-                                    <div>{{ $settings2['chart_title'] }}</div>
+                                    <div>Proiecte</div>
                                     <br />
                                 </div>
                             </div>
                         </div>
                         <div class="{{ $settings3['column_class'] }}">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body pb-0">
+                            <div class="card text-white bg-primary" style="border-color: #faab9f;">
+                                <div class="card-body pb-0" style="background-color: #faab9f; ">
                                     <div class="text-value">{{ number_format($settings3['total_number']) }}</div>
-                                    <div>{{ $settings3['chart_title'] }}</div>
+                                    <div>Utilizatori</div>
                                     <br />
                                 </div>
                             </div>
                         </div>
                         <div class="{{ $settings4['column_class'] }}">
-                            <div class="card text-white bg-primary">
-                                <div class="card-body pb-0">
+                            <div class="card text-white bg-primary" style="border-color: #b48484;">
+                                <div class="card-body pb-0" style="background-color: #b48484; ">
                                     <div class="text-value">{{ number_format($settings4['total_number']) }}</div>
-                                    <div>{{ $settings4['chart_title'] }}</div>
+                                    <div>Angajați</div>
                                     <br />
                                 </div>
                             </div>
                         </div>
                         <div class="{{ $chart5->options['column_class'] }}">
-                            <h3>{!! $chart5->options['chart_title'] !!}</h3>
+                            <h3>Ore lucrate</h3>
                             {!! $chart5->renderHtml() !!}
                         </div>
                         <div class="{{ $chart6->options['column_class'] }}">
-                            <h3>{!! $chart6->options['chart_title'] !!}</h3>
+                            <h3>Programări</h3>
                             {!! $chart6->renderHtml() !!}
                         </div>
                     </div>

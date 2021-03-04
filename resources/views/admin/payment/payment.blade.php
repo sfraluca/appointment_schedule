@@ -2,7 +2,7 @@
 @section('content')
 
 
-<h3 class="page-title">Payment</h3>
+<h3 class="page-title">Plată</h3>
 
 <form action="" method="GET">
     <div class="row">
@@ -32,13 +32,25 @@
 din  <span>{{$month_hours}}</span>h</p>
 <p>Salariul este de: {{$salary}} lei</p> -->
 
-<div>
+<div class="card">
+    <div class="card-header">
+       Status plată
+    </div>
+
+    <div class="card-body">
 <form method="POST" action="{{ url('admin/salary_save')}}">
             @csrf
             <div class="form-group">
                 <label for="employee">Angajatul:</label>
-                <input class="form-control {{ $errors->has('employee_id') ? 'is-invalid' : '' }}" type="text" name="employee_id" id="employee_id" value="{{ $key }}" @if ($key==$currentEmployee) selected @endif>
-                <input class="form-control {{ $errors->has('employee') ? 'is-invalid' : '' }}" type="text" name="employee" id="employee" value="{{ $value }}" @if ($key==$currentEmployee)  @endif>
+                <div class="row">
+                <div class="col-sm"> <input class="form-control {{ $errors->has('employee_id') ? 'is-invalid' : '' }}" type="text" name="employee_id" id="employee_id" value="{{ $key }}" @if ($key==$currentEmployee) selected @endif>
+              
+                </div>
+                <div class="col-sm">  <input class="form-control {{ $errors->has('employee') ? 'is-invalid' : '' }}" type="text" name="employee" id="employee" value="{{ $value }}" @if ($key==$currentEmployee)  @endif>
+              
+                </div>
+               
+                </div>
               
                 @if($errors->has('employee'))
                     <div class="invalid-feedback">
@@ -80,10 +92,11 @@ din  <span>{{$month_hours}}</span>h</p>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
-                   Save(opțional)
+                   Salvează
                 </button>
             </div>
         </form>
+</div>
 </div>
 
 

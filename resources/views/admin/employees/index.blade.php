@@ -11,7 +11,7 @@
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.employee.title_singular') }} {{ trans('global.list') }}
+         {{ trans('global.list') }} {{ trans('cruds.employee.title_singular') }}
     </div>
 
     <div class="card-body">
@@ -31,7 +31,7 @@
                         {{ trans('cruds.employee.fields.last_name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.employee.fields.stripe_connect_id') }}
+                        Id Stripe Connect
                     </th>
                     <th>
                         {{ trans('cruds.employee.fields.phone') }}

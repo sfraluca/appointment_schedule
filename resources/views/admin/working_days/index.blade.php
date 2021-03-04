@@ -4,14 +4,14 @@
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
             <a class="btn btn-success" href="{{ route('admin.working_days.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.client.title_singular') }}
+                {{ trans('global.add') }} Zile de lucru
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.working_days.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.list') }} zile de lucru angajat
     </div>
 
     <div class="card-body">
