@@ -40,8 +40,8 @@ class WorkingHourController extends Controller
                     \DB::raw("DATE_FORMAT(date,'%Y') as year"),
                     \DB::raw("TIMEDIFF(finish_time, start_time) as hours")])
                     ->whereBetween('date', [
-                                Carbon::now()->startOfYear()->subYear(1),
-                                Carbon::now()->endOfMonth()->subYear(1),
+                                Carbon::now()->startOfYear()->subYear(),
+                                Carbon::now()->endOfYear()->subYear(),
                             ])
                     ->groupBy('id') 
                     ->groupBy('hours') 
@@ -77,6 +77,7 @@ class WorkingHourController extends Controller
                 ->groupBy('employee_id')
                 ->groupBy('month')
                 ->orderBy('month','desc');
+                
             $last_2_month = WorkingHour::with('employee')
                 ->select(['id','employee_id',
                 \DB::raw("DATE_FORMAT(date,'%Y-%M') as month"),
@@ -307,6 +308,7 @@ class WorkingHourController extends Controller
                 ];
             }
             foreach($last_year_q as $item_ly) {
+                
                 $totalTime_ly = $totalTime_cm + strtotime("1970-01-01 $item_ly->hours UTC");
                 $totalHours_ly = gmdate("H:i:s", $totalTime_ly); 
                 $report_ly[$item_ly->month] = [

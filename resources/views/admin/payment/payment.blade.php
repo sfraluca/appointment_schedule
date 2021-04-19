@@ -43,10 +43,10 @@ din  <span>{{$month_hours}}</span>h</p>
             <div class="form-group">
                 <label for="employee">Angajatul:</label>
                 <div class="row">
-                <div class="col-sm"> <input class="form-control {{ $errors->has('employee_id') ? 'is-invalid' : '' }}" type="text" name="employee_id" id="employee_id" value="{{ $key }}" @if ($key==$currentEmployee) selected @endif>
+                <div class="col-sm"> <input class="form-control" type="text" name="employee_id" id="employee_id" value="{{ $currentEmployee }}" @if ($key==$currentEmployee) selected @endif>
               
                 </div>
-                <div class="col-sm">  <input class="form-control {{ $errors->has('employee') ? 'is-invalid' : '' }}" type="text" name="employee" id="employee" value="{{ $value }}" @if ($key==$currentEmployee)  @endif>
+                <div class="col-sm">  <input class="form-control" type="text" name="employee" id="employee" value="{{ $currentEmployee }}" @if ($key==$currentEmployee) selected  @endif>
               
                 </div>
                

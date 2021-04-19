@@ -67,11 +67,13 @@ class PaymentController extends Controller
         $report_lm = [];
         $totalTime_lm = 0;
         $salary = 0;
-        
+        $month_hours = 0;
+        $month_days = 0;
+
         if($request->has('employee')) {
             $currentEmployee = $request->get('employee');
-           
-            foreach($last_month_q as $item_lm) {
+        
+               foreach($last_month_q as $item_lm) {
                 $working_month = $working_days->where('month','=', $item_lm->month);
                 
                 
@@ -94,7 +96,7 @@ class PaymentController extends Controller
                 }
                
                 $month_hours = $month_days * $employments_hour;
-               
+                
                 if($totalTime_lm > $month_hours) {
 
                     $diff = $totalTime_lm - $month_hours;
@@ -106,12 +108,13 @@ class PaymentController extends Controller
                 }
                
             }  
+           
         
         } else {
             $currentEmployee = '';
             $month_hours = '';
         } 
-
+     
        
         return view('admin.payment.payment', compact('report_lm','employees','currentEmployee','salary','month_hours'));
     }
