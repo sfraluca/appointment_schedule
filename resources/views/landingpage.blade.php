@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html">
+                            <a class="navbar-brand" href="#">
                                 <img src="assets/images/lux.png" alt="Logo">
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,16 +82,16 @@
                             <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                                 <ul id="nav" class="navbar-nav ml-auto">
                                     <li class="nav-item active">
-                                        <a class="page-scroll" href="#home">Home</a>
+                                        <a class="page-scroll" href="#home">Pagina principală</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#features">Features</a>
+                                        <a class="page-scroll" href="#features">Caracteristici</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#about">About</a>
+                                        <a class="page-scroll" href="#about">Despre</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#facts">Why</a>
+                                        <a class="page-scroll" href="#facts">Detalii</a>
                                     </li>
                                 </ul>
                             </div> 
@@ -101,12 +101,12 @@
                                     @if (Route::has('login'))
                                         <!-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block"> -->
                                             @auth
-                                                <a href="{{ url('/home') }}" class="main-btn">Dashboard</a>
+                                                <a href="{{ url('/home') }}" class="main-btn">Panou de control</a>
                                             @else
-                                                <a href="{{ route('login') }}" class="main-btn">Login</a>
+                                                <a href="{{ route('login') }}" class="main-btn">Intră în cont</a>
 
                                                 @if (Route::has('register'))
-                                                    <a href="{{ route('register') }}" class="main-btn">Register</a>
+                                                    <a href="{{ route('register') }}" class="main-btn">Înregistrează-te</a>
                                                 @endif
                                             @endif
                                         <!-- </div> -->
@@ -125,11 +125,11 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="header-hero-content text-center">
-                            <h3 class="header-sub-title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.2s">Appointment App Calendar</h3>
-                            <h2 class="header-title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.5s">Kickstart Your Project with this app</h2>
-                            <p class="text wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.8s">A new revolutionary app who pays you for the hour you make.</p>
+                            <h3 class="header-sub-title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.2s">Sistem de management</h3>
+                            <h2 class="header-title wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.5s">Începe-ți proiectul cu această aplicație!</h2>
+                            <p class="text wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.8s">O aplicație revoluționară care te plătește pentru ora pe care o faci.</p>
                             <!-- login -->
-                            <a href="#" class="main-btn wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="1.1s">Get Started</a>
+                            <!-- <a href="#" class="main-btn wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="1.1s">Get Started</a> -->
                         </div> <!-- header hero content -->
                     </div>
                 </div> <!-- row -->
@@ -186,7 +186,7 @@
                 <div class="col-lg-10">
                     <div class="section-title text-center pb-40">
                         <div class="line m-auto"></div>
-                        <h3 class="title">Clean and simple design, <span> Comes with everything you need to get started!</span></h3>
+                        <h3 class="title">Design simplu și clar, <span> vine cu tot ce ai nevoie pentru a începe!</span></h3>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -199,8 +199,8 @@
                             <i class="lni lni-baloon"></i>
                         </div>
                         <div class="services-content mt-30">
-                            <h4 class="services-title"><a href="#">Clean</a></h4>
-                            <p class="text">A clean workspace to schedule your program and get paid from your company.</p>
+                            <h4 class="services-title"><a href="#">Clar</a></h4>
+                            <p class="text">Un spațiu de lucru curat pentru a vă planifica programul și a fi plătit de compania dumneavoastră.</p>
                             <!-- <a class="more" href="#">Learn More <i class="lni lni-chevron-right"></i></a> -->
                         </div>
                     </div> <!-- single services -->
@@ -214,7 +214,7 @@
                         </div>
                         <div class="services-content mt-30">
                             <h4 class="services-title"><a href="#">Robust</a></h4>
-                            <p class="text">Services included are enough to get your statistics în time.</p>
+                            <p class="text">Serviciile incluse sunt suficiente pentru a vă obține statisticile în timp.</p>
                             <!-- <a class="more" href="#">Learn More <i class="lni lni-chevron-right"></i></a> -->
                         </div>
                     </div> <!-- single services -->
@@ -227,8 +227,8 @@
                             <i class="lni lni-bolt-alt"></i>
                         </div>
                         <div class="services-content mt-30">
-                            <h4 class="services-title"><a href="#">Powerful</a></h4>
-                            <p class="text">It's a powerful tool for a company that want to pay employee faster.</p>
+                            <h4 class="services-title"><a href="#">Influent</a></h4>
+                            <p class="text">Este un instrument puternic pentru o companie care dorește să plătească mai repede angajații.</p>
                             <!-- <a class="more" href="#">Learn More <i class="lni lni-chevron-right"></i></a> -->
                         </div>
                     </div> <!-- single services -->
@@ -248,10 +248,10 @@
                     <div class="about-content mt-50 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="section-title">
                             <div class="line"></div>
-                            <h3 class="title">Quick & Easy <span>to Use Appointment App Calendar</span></h3>
+                            <h3 class="title">Ușor și repede <span>de folosit sistemul de management</span></h3>
                         </div> <!-- section title -->
-                        <p class="text">An easy an playfull appointment calendar who pays you for the hour you make in a month. The functionalities included are helping you to grow a business or to schedule your time and get paid from the company your working with. </p>
-                        <a href="#" class="main-btn">Try it Free</a>
+                        <p class="text">O aplicație plăcută, care te plătește pentru ora pe care o faci într-o lună. Funcționalitățile incluse vă ajută să vă dezvoltați o afacere sau să vă programați timpul și să fiți plătit de compania la care lucrați.</p>
+                       <!-- <a href="#" class="main-btn">Încearcă gratuit</a>-->
                     </div> <!-- about content -->
                 </div>
                 <div class="col-lg-6">
@@ -280,10 +280,10 @@
                     <div class="about-content mt-50 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="section-title">
                             <div class="line"></div>
-                            <h3 class="title">Modern design <span> with CoreUI</span></h3>
+                            <h3 class="title">Design modern<span> cu CoreUI</span></h3>
                         </div> <!-- section title -->
-                        <p class="text">A simply and useful framework integrated in this calendar is helping you to identify and schedule your program at work buy viewing the hours you made at work</p>
-                        <a href="#" class="main-btn">Try it Free</a>
+                        <p class="text">Un cadru simplu și util integrat în această aplicație vă ajută să vă planificați programul la locul de muncă, prin vizionarea orelor pe care le-ați făcut la serviciu.</p>
+                      <!--  <a href="#" class="main-btn">Try it Free</a> -->
                     </div> <!-- about content -->
                 </div>
                 <div class="col-lg-6 order-lg-first">
@@ -305,10 +305,10 @@
                     <div class="about-content mt-50 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.5s">
                         <div class="section-title">
                             <div class="line"></div>
-                            <h3 class="title"><span>Crafted for</span> Employees and CEOs</h3>
+                            <h3 class="title"><span>Creat pentru </span> angajatori și angajați</h3>
                         </div> <!-- section title -->
-                        <p class="text">Now is more easy to pay your employees. After a month you can pay them via Stripe buy the hours they accumulate. For the employees is more simple to be paid faster and no stress about it.</p>
-                        <a href="#" class="main-btn">Try it Free</a>
+                        <p class="text">Acum este mai ușor să vă plătiți angajații. După o lună îi puteți plăti prin Stripe, orele pe care le acumulează. Pentru angajați este mai simplu să fie plătit mai repede și să nu fie stresat.</p>
+                       <!--  <a href="#" class="main-btn">Try it Free</a> -->
                     </div> <!-- about content -->
                 </div>
                 <div class="col-lg-6">
@@ -341,7 +341,7 @@
                                 <img src="assets/images/video.png" alt="video">
                             </div>
                             <div class="video-icon">
-                                <a href="https://www.youtube.com/watch?v=r44RKWyfcFw" class="video-popup"><i class="lni lni-play"></i></a>
+                            <!--    <a href="https://www.youtube.com/watch?v=r44RKWyfcFw" class="video-popup"><i class="lni lni-play"></i></a> -->
                             </div>
                         </div> <!-- video wrapper -->
                     </div> <!-- video content -->
@@ -351,16 +351,16 @@
                         <div class="counter-content">
                             <div class="section-title">
                                 <div class="line"></div>
-                                <h3 class="title">Cool facts <span> about this app</span></h3>
+                                <h3 class="title">Curiozități<span> despre această aplicație</span></h3>
                             </div> <!-- section title -->
-                            <p class="text">Stripe is integrated in this app, that help the ceo to make the tranzaction faster and easier. For the employees is so easy to see how many hours they made in a month buy viewing the statistics in the dashbord and via Calendar. Is very easy to introduce the appointment and the last but not least, you the schedule a program with the clients.</p>
+                            <p class="text">Stripe este integrat în această aplicație, care ajută angajatorul să facă tranzacția mai rapidă și mai ușoară. Pentru angajați este atât de ușor să vadă câte ore au făcut într-o lună, vizualizând statisticile din panoul de control și prin calendar. Este foarte ușor să introduceți programarea și, nu în ultimul rând, să programați un program cu clienții.</p>
                         </div> <!-- counter content -->
                         <div class="row no-gutters">
                             <div class="col-4">
                                 <div class="single-counter counter-color-1 d-flex align-items-center justify-content-center">
                                     <div class="counter-items text-center">
                                         <span class="count"><span class="counter">1</span>K</span>
-                                        <p class="text">Companies</p>
+                                        <p class="text">Companii</p>
                                     </div>
                                 </div> <!-- single counter -->
                             </div>
@@ -368,7 +368,7 @@
                                 <div class="single-counter counter-color-2 d-flex align-items-center justify-content-center">
                                     <div class="counter-items text-center">
                                         <span class="count"><span class="counter">3</span>K</span>
-                                        <p class="text">Users</p>
+                                        <p class="text">Utilizatori</p>
                                     </div>
                                 </div> <!-- single counter -->
                             </div>
@@ -376,7 +376,7 @@
                                 <div class="single-counter counter-color-3 d-flex align-items-center justify-content-center">
                                     <div class="counter-items text-center">
                                         <span class="count"><span class="counter">4.8</span></span>
-                                        <p class="text">User Rating</p>
+                                        <p class="text">Evaluarea utilizatorilor</p>
                                     </div>
                                 </div> <!-- single counter -->
                             </div>
@@ -396,13 +396,13 @@
                 <div class="row">
                     <div class="col-lg-10">
                         <div class="subscribe-content mt-45">
-                            <h2 class="subscribe-title">Prepared to work with <span>Appointment Calendar Scheduler?</span></h2>
+                            <h2 class="subscribe-title">Pregătit să lucrezi cu <span>sistemul de management?</span></h2>
                         </div>
                     </div>
                     <div class="col-lg-2">
                         <div class="subscribe-form mt-50">
                             <div class="navbar-btn d-none d-sm-inline-block">
-                                <a class="main-btn" data-scroll-nav="0" href="https://uideck.com/templates/basic/" rel="nofollow">Register</a>
+                                <a class="main-btn" data-scroll-nav="0" href="/register" rel="nofollow">Înregistrează-te</a>
                             </div>
                         </div>
                     </div>
@@ -415,7 +415,7 @@
                             <a class="logo" href="#">
                                 <img src="assets/images/lux.png" alt="logo">
                             </a>
-                            <p class="text">Appointment Calendar app is an easy tool to work with and pays you after the hour you work in your company.</p>
+                            <p class="text">Aplicația aceasta este un instrument ușor de utilizat și vă plătește orele în care lucrați în companie.</p>
                             <ul class="social">
                                 <li><a href="https://www.facebook.com/"><i class="lni lni-facebook-filled"></i></a></li>
                                 <li><a href="https://twitter.com/"><i class="lni lni-twitter-filled"></i></a></li>
@@ -441,14 +441,14 @@
                             <!-- footer wrapper -->
                             <div class="link-wrapper wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s">
                                 <div class="footer-title">
-                                    <h4 class="title">Menu</h4>
+                                    <h4 class="title">Meniu</h4>
                                 </div>
                                 <ul class="link">
-                                    <li><a class="page-scroll" href="#home">Home</a></li>
-                                    <li><a class="page-scroll" href="#features">Features</a></li>
-                                    <li><a class="page-scroll" href="#about">About</a></li>
-                                    <li><a class="page-scroll" href="/login">Login</a></li>
-                                    <li><a class="page-scroll" href="/register">Register</a></li>
+                                    <li><a class="page-scroll" href="#home">Pagina principală</a></li>
+                                    <li><a class="page-scroll" href="#features">Caracteristici</a></li>
+                                    <li><a class="page-scroll" href="#about">Despre</a></li>
+                                    <li><a class="page-scroll" href="/login">Intră în cont</a></li>
+                                    <li><a class="page-scroll" href="/register">Înregistrează-te</a></li>
                                 </ul>
                             </div> <!-- footer wrapper -->
                         </div> <!-- footer link -->
@@ -456,13 +456,13 @@
                     <div class="col-lg-3 col-md-5 col-sm-5">
                         <div class="footer-contact mt-50 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
                             <div class="footer-title">
-                                <h4 class="title">Contact Us</h4>
+                                <h4 class="title">Contactează-ne</h4>
                             </div>
                             <ul class="contact">
-                                <li>+809272561823</li>
+                                <li>+4 0725 618 239</li>
                                 <li>info@gmail.com</li>
-                                <li>www.yourweb.com</li>
-                                <li>123 Stree New York City , United <br> States Of America 750.</li>
+                                <li>www.webultau.com</li>
+                                <li>Strada 1 Oradea, Bihor <br> România</li>
                             </ul>
                         </div> <!-- footer contact -->
                     </div>
@@ -473,7 +473,7 @@
                     <div class="col-lg-12">
                         <div class="copyright d-sm-flex justify-content-between">
                             <div class="copyright-content">
-                                <p class="text"><a href="https://uideck.com" rel="nofollow">Appointment Calendar app 2020</a></p>
+                                <p class="text"><a href="https://uideck.com" rel="nofollow">Sistem de management 2021</a></p>
                             </div> <!-- copyright content -->
                         </div> <!-- copyright -->
                     </div>
