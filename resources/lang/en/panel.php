@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'Appointment Schedule',
+    'site_title' => 'MANAGEMENT APP',
 ];

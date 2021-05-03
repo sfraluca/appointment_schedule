@@ -166,7 +166,7 @@
             <div class="row">
 
             <div class="col-md-6 stretch-card grid-margin" >
-              <div class="card card-img-holder text-white" style="background-color: #faab9f;" >
+              <div class="card card-img-holder text-white" style="background-image: linear-gradient(to right, #e590b5, #faab9f)" >
                 <div class="card-body">
                   <h4 class="font-weight-normal mb-2"> Anul curent
                     <i class="mdi mdi-chart-line mdi-24px float-right"></i>
@@ -178,7 +178,7 @@
               </div>
             </div>
             <div class="col-md-6 stretch-card grid-margin">
-              <div class="card card-img-holder text-white" style="background-color: #59bac0;">
+              <div class="card card-img-holder text-white" style="background-image: linear-gradient(to right, #6fa1ac, #59bac0)">
                 <div class="card-body">
                   <h4 class="font-weight-normal mb-2"> Anul trecut
                     <i class="mdi mdi-chart-line mdi-24px float-right"></i>

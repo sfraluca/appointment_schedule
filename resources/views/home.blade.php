@@ -17,37 +17,37 @@
 
                     <div class="row">
                         <div class="{{ $settings1['column_class'] }}" >
-                            <div class="card text-white bg-primary" style="border-color: #59bac0;">
-                                <div class="card-body pb-0" style="background-color: #59bac0; ">
-                                    <div class="text-value">{{ number_format($settings1['total_number']) }}</div>
-                                    <div>Clienți</div>
+                            <div class="card text-white bg-primary" style="border-color: #6fa1ac;">
+                                <div class="card-body pb-0" style="background-image: linear-gradient(to right, #6fa1ac, #59bac0) ">
+                                    <div class="text-value" style="text-align:center">{{ number_format($settings1['total_number']) }}</div>
+                                    <div style="text-align:center">Clienți</div>
                                     <br />
                                 </div>
                             </div>
                         </div>
                         <div class="{{ $settings2['column_class'] }}">
-                            <div class="card text-white bg-primary" style="border-color: #e590b5;">
-                                <div class="card-body pb-0" style="background-color: #e590b5; ">
-                                    <div class="text-value">{{ number_format($settings2['total_number']) }}</div>
-                                    <div>Proiecte</div>
+                            <div class="card text-white bg-primary" style="border-color: #fa6e6f;">
+                                <div class="card-body pb-0" style="background-image: linear-gradient(to right, #b02251, #fa6e6f); ">
+                                    <div class="text-value" style="text-align:center">{{ number_format($settings2['total_number']) }}</div>
+                                    <div style="text-align:center">Proiecte</div>
                                     <br />
                                 </div>
                             </div>
                         </div>
                         <div class="{{ $settings3['column_class'] }}">
-                            <div class="card text-white bg-primary" style="border-color: #faab9f;">
-                                <div class="card-body pb-0" style="background-color: #faab9f; ">
-                                    <div class="text-value">{{ number_format($settings3['total_number']) }}</div>
-                                    <div>Utilizatori</div>
+                            <div class="card text-white bg-primary" style="border-color: #fedeeb;">
+                                <div class="card-body pb-0" style="background-image: linear-gradient(to right, #b48484, #faab9f) ">
+                                    <div class="text-value" style="text-align:center">{{ number_format($settings3['total_number']) }}</div>
+                                    <div style="text-align:center">Utilizatori</div>
                                     <br />
                                 </div>
                             </div>
                         </div>
                         <div class="{{ $settings4['column_class'] }}">
-                            <div class="card text-white bg-primary" style="border-color: #b48484;">
-                                <div class="card-body pb-0" style="background-color: #b48484; ">
-                                    <div class="text-value">{{ number_format($settings4['total_number']) }}</div>
-                                    <div>Angajați</div>
+                            <div class="card text-white bg-primary" style="border-color: #fedeeb;">
+                                <div class="card-body pb-0" style="background-image: linear-gradient(to right, #e590b5, #faab9f)">
+                                    <div class="text-value" style="text-align:center">{{ number_format($settings4['total_number']) }}</div>
+                                    <div style="text-align:center">Angajați</div>
                                     <br />
                                 </div>
                             </div>

@@ -123,6 +123,10 @@ table.dataTable thead .sorting_desc {
     display: block;
 }
 
-.c-sidebar-brand .c-sidebar-brand-full:hover {
+/* .c-sidebar-brand .c-sidebar-brand-full:hover {
     color: inherit;
+} */
+
+#sidebar {
+    background-image: linear-gradient(to right,#3532cb, #315dde);
 }
