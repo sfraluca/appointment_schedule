@@ -2,7 +2,7 @@
 @section('content')
 
 
-<h3 class="page-title">Payment to: {{$employees->employee}}</h3>
+<h3 class="page-title">Plată către: {{$employees->employee}}</h3>
 
 
 <div class="card">
@@ -11,7 +11,7 @@
         <form method="POST" action="{{ url('admin/payment_post') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label class="required" for="card_no">{{ trans('card_no') }}</label>
+                <label class="required" for="card_no">Nr. Card</label>
                 <input class="form-control integer {{ $errors->has('card_no') ? 'is-invalid' : '' }}" type="text" name="card_no" id="card_no" value="{{ old('card_no') }}" required>
                 @if($errors->has('card_no'))
                     <div class="invalid-feedback">
@@ -21,7 +21,7 @@
             </div>
             <div class="row">
             <div class="form-group col">
-                <label class="required" for="exp_month">{{ trans('exp_month') }}</label>
+                <label class="required" for="exp_month">Luna</label>
                 <input class="form-control integer {{ $errors->has('exp_month') ? 'is-invalid' : '' }}" type="text" name="exp_month" id="exp_month" value="{{ old('exp_month') }}" required>
                 @if($errors->has('exp_month'))
                     <div class="invalid-feedback">
@@ -30,7 +30,7 @@
                 @endif
             </div>
             <div class="form-group col">
-                <label class="required" for="exp_year">{{ trans('exp_year') }}</label>
+                <label class="required" for="exp_year">An</label>
                 <input class="form-control integer {{ $errors->has('exp_year') ? 'is-invalid' : '' }}" type="text" name="exp_year" id="exp_year" value="{{ old('exp_year') }}" required>
                 @if($errors->has('exp_year'))
                     <div class="invalid-feedback">
@@ -40,7 +40,7 @@
             </div>
             </div>
             <div class="form-group">
-                <label class="required" for="cvv_no">{{ trans('cvv_no') }}</label>
+                <label class="required" for="cvv_no">CVV</label>
                 <input class="form-control integer {{ $errors->has('cvv_no') ? 'is-invalid' : '' }}" type="text" name="cvv_no" id="cvv_no" value="{{ old('cvv_no') }}" required>
                 @if($errors->has('cvv_no'))
                     <div class="invalid-feedback">
@@ -49,7 +49,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <label class="required" for="amount">{{ trans('amount') }}</label>
+                <label class="required" for="amount">Suma</label>
                 <input class="form-control integer {{ $errors->has('amount') ? 'is-invalid' : '' }}" type="text" name="amount" id="amount" value="{{ $employees->salary }}" required>
                 @if($errors->has('amount'))
                     <div class="invalid-feedback">
