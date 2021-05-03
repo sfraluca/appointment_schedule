@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.edit') }} {{ trans('cruds.employment.title_singular') }}
+        {{ trans('global.edit') }} Zile de lucru
     </div>
 
     <div class="card-body">
@@ -11,7 +11,7 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label class="required" for="employee_id">{{ trans('cruds.employment.fields.employee') }}</label>
+                <label class="required" for="employee_id">Angajat</label>
                 <select class="form-control select2 {{ $errors->has('employee') ? 'is-invalid' : '' }}" name="employee_id" id="employee_id" required>
                     @foreach($employees as $id => $employee)
                         <option value="{{ $id }}">{{ $employee }}</option>
@@ -24,7 +24,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <label class="required" for="days">{{ trans('cruds.working_day.fields.days') }}</label>
+                <label class="required" for="days">Ore</label>
                 <input class="form-control integer {{ $errors->has('days') ? 'is-invalid' : '' }}" type="text" name="days" id="days" value="{{ old('days', $workingsDays->days) }}" required>
                 @if($errors->has('days'))
                     <div class="invalid-feedback">
@@ -33,20 +33,20 @@
                 @endif
             </div>
             <div class="form-group">
-                <label class="required" for="month">{{ trans('cruds.working_day.fields.month') }}</label>
+                <label class="required" for="month">Luna</label>
                 <select id="month" name="month">
-                    <option selected>January</option>
-                    <option>February</option>
-                    <option>March</option>
-                    <option>April</option>
-                    <option>May</option>
-                    <option>June</option>
-                    <option>July</option>
+                    <option selected>Ianuarie</option>
+                    <option>Februarie</option>
+                    <option>Martie</option>
+                    <option>Aprilie</option>
+                    <option>Mai</option>
+                    <option>Iunie</option>
+                    <option>Iulie</option>
                     <option>August</option>
-                    <option>September</option>
-                    <option>October</option>
-                    <option>November</option>
-                    <option>December</option>
+                    <option>Septembrie</option>
+                    <option>Octombrie</option>
+                    <option>Noiembrie</option>
+                    <option>Decembrie</option>
                     </select>
             </div>
             

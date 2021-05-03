@@ -19,10 +19,10 @@
             <thead>
                 <tr>
                     <th width="10">
-
+                        ID
                     </th>
                     <th>
-                        ID
+                        ID Angajat
                     </th>
                     <th>
                         Lună
@@ -42,10 +42,10 @@
                     @foreach($working_days as $key => $working_day)
                         <tr data-entry-id="{{ $working_day->id }}">
                             <td>
-
+                                {{ $working_day->id ?? '' }}
                             </td>
                             <td>
-                                {{ $working_day->id ?? '' }}
+                                {{ $working_day->employee_id ?? '' }}
                             </td>
                             <td>
                                 {{ $working_day->month ?? '' }}

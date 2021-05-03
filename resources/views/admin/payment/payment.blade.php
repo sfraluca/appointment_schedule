@@ -46,8 +46,10 @@ din  <span>{{$month_hours}}</span>h</p>
                 <div class="col-sm"> <input class="form-control" type="text" name="employee_id" id="employee_id" value="{{ $currentEmployee }}" @if ($key==$currentEmployee) selected @endif>
               
                 </div>
-                <div class="col-sm">  <input class="form-control" type="text" name="employee" id="employee" value="{{ $currentEmployee }}" @if ($key==$currentEmployee) selected  @endif>
-              
+                <div class="col-sm">  
+                @foreach($employee_name as $name)
+                <input class="form-control" type="text" name="employee" id="employee" value="{{ $name['first_name'] }}" @if ($key==$currentEmployee) selected  @endif>
+                @endforeach
                 </div>
                
                 </div>

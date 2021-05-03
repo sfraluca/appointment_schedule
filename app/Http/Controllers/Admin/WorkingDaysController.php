@@ -25,8 +25,9 @@ class WorkingDaysController extends Controller
     {
         $working_days = DB::table('working_days')
         ->join('employees','working_days.employee_id','=','employees.id')
+        ->select('working_days.*','employees.first_name','employees.last_name')
         ->get();
-
+        
         return view('admin.working_days.index', compact('working_days'));
     }
 
@@ -81,7 +82,7 @@ class WorkingDaysController extends Controller
     {
 
         $workingsDays = WorkingDays::find($id);
-
+      
         return view('admin.working_days.show', compact('workingsDays'));
     }
 

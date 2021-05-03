@@ -12,7 +12,7 @@
 
             </select>
         </li>
-        @can('admin_access')
+        
         <li class="c-sidebar-nav-item">
             <a href="{{ route("admin.home") }}" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
@@ -21,11 +21,11 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
-        @endcan
+        
         @can('profil_access')
         <li class="c-sidebar-nav-item">
             <a href="{{ route("admin.profile") }}" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-user-alt">
 
                 </i>
                 {{ trans('global.profile') }}
@@ -77,7 +77,7 @@
         @can('client_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.clients.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/clients") || request()->is("admin/clients/*") ? "active" : "" }}">
-                    <i class="fa-fw fas fa-user c-sidebar-nav-icon">
+                    <i class="fa-fw fas fa-users c-sidebar-nav-icon">
 
                     </i>
                     {{ trans('cruds.client.title') }}

@@ -63,7 +63,7 @@ class PaymentController extends Controller
         }
         $last_month_q = $last_month->get();
         $employees = Employee::all()->pluck('first_name', 'id')->prepend(trans('global.pleaseSelect'), '');
-       
+        $employee_name = Employee::select('first_name','last_name')->get();
         $report_lm = [];
         $totalTime_lm = 0;
         $salary = 0;
@@ -72,6 +72,8 @@ class PaymentController extends Controller
 
         if($request->has('employee')) {
             $currentEmployee = $request->get('employee');
+            $employee_name = Employee::select('id','first_name','last_name')->where('id','=',$currentEmployee)->get();
+            // dd($employee_name);
         
                foreach($last_month_q as $item_lm) {
                 $working_month = $working_days->where('month','=', $item_lm->month);
@@ -116,7 +118,7 @@ class PaymentController extends Controller
         } 
      
        
-        return view('admin.payment.payment', compact('report_lm','employees','currentEmployee','salary','month_hours'));
+        return view('admin.payment.payment', compact('report_lm','employees','employee_name','currentEmployee','salary','month_hours'));
     }
     public function salary_save(Request $request)
     { 

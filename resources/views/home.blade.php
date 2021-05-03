@@ -52,10 +52,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="{{ $chart5->options['column_class'] }}">
+                        <!-- <div class="{{ $chart5->options['column_class'] }}">
                             <h3>Ore lucrate</h3>
                             {!! $chart5->renderHtml() !!}
-                        </div>
+                        </div> -->
                         <div class="{{ $chart6->options['column_class'] }}">
                             <h3>Programări</h3>
                             {!! $chart6->renderHtml() !!}

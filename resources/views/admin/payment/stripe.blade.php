@@ -60,7 +60,7 @@
             
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
-                    {{ trans('global.pay') }}
+                    Plătește
                 </button>
             </div>
         </form>
