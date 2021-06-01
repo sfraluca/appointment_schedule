@@ -30,7 +30,7 @@
                 <span class="help-block">{{ trans('cruds.employee.fields.last_name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="stripe_connect_id">{{ trans('cruds.user.fields.stripe_id') }}</label>
+                <label class="required" for="stripe_connect_id">ID Stripe</label>
                 <input class="form-control {{ $errors->has('stripe_connect_id') ? 'is-invalid' : '' }}" type="text" name="stripe_connect_id" id="stripe_connect_id" value="{{ old('stripe_connect_id', '') }}" required>
                 @if($errors->has('stripe_connect_id'))
                     <div class="invalid-feedback">

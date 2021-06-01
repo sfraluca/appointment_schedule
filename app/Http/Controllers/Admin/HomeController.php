@@ -6,6 +6,7 @@ use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use App\Models\Employment;
 use App\Models\Employee;
 use App\Models\User;
+use App\Models\Salaries;
 use DB;
 use App\Models\WorkingHour;
 use Illuminate\Support\Facades\Auth;
@@ -20,14 +21,14 @@ class HomeController
         
         $users = User::select('id','employee_id')
         ->where('id','=', $user_auth->id)
+        ->select('id')
         ->get();
       
         foreach($users as $employee) {
             $employees = DB::table('employees')
-            ->where('employees.id','=', $employee->employee_id)
             ->leftJoin('employment','employees.id','=','employment.employee_id')
+            ->where('employees.id','=', $employee->id)
             ->get();
-        
 
         $current_year = WorkingHour::with('employee')
                     ->select(['id','employee_id',
@@ -37,7 +38,7 @@ class HomeController
                                 Carbon::now()->startOfYear(),
                                 Carbon::now()->endOfYear(),
                             ])
-                    ->where('working_hours.employee_id','=', $employee->employee_id)
+                    ->where('working_hours.employee_id','=', $employee->id)
                     ->groupBy('id') 
                     ->groupBy('hours') 
                     ->groupBy('employee_id')
@@ -51,7 +52,7 @@ class HomeController
                                 Carbon::now()->startOfYear()->subYear(1),
                                 Carbon::now()->endOfMonth()->subYear(1),
                             ])
-                    ->where('working_hours.employee_id','=', $employee->employee_id)
+                    ->where('working_hours.employee_id','=', $employee->id)
                     ->groupBy('id') 
                     ->groupBy('hours') 
                     ->groupBy('employee_id')
@@ -65,7 +66,7 @@ class HomeController
                                 Carbon::now()->startOfMonth(),
                                 Carbon::now()->endOfMonth(),
                             ])
-                    ->where('working_hours.employee_id','=', $employee->employee_id)
+                    ->where('working_hours.employee_id','=', $employee->id)
                     ->groupBy('id') 
                     ->groupBy('hours') 
                     ->groupBy('employee_id')
@@ -81,7 +82,7 @@ class HomeController
                                 Carbon::now()->startOfMonth()->subMonth(),
                                 Carbon::now()->endOfMonth()->subMonth(),
                             ])
-                    ->where('working_hours.employee_id','=', $employee->employee_id)
+                    ->where('working_hours.employee_id','=', $employee->id)
                     ->groupBy('id') 
                     ->groupBy('hours') 
                     ->groupBy('employee_id')

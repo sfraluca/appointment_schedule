@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\WorkingDays;
 use App\Models\Employee;
+use App\Http\Requests\MassDestroyWorkingDaysRequest;
+use App\Http\Requests\UpdateWorkingDaysRequest;
 use App\Http\Requests\StoreWorkingDaysRequest;
 use Validator;
 use App\Entities\RegisterWorkingDays;
@@ -94,10 +96,10 @@ class WorkingDaysController extends Controller
         return redirect()->route('admin.working_days.index');
     }
 
-    // public function massDestroy(MassDestroyUserRequest $request)
-    // {
-    //     User::whereIn('id', request('ids'))->delete();
+    public function massDestroy(MassDestroyWorkingDaysRequest $request)
+    {
+        WorkingDays::whereIn('id', request('ids'))->delete();
 
-    //     return response(null, Response::HTTP_NO_CONTENT);
-    // }
+        return response(null, Response::HTTP_NO_CONTENT);
+    }
 }

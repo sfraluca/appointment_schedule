@@ -10,7 +10,7 @@ use \DateTimeInterface;
 
 class WorkingDays extends Model
 {
-    use SoftDeletes, MultiTenantModelTrait, HasFactory;
+    use MultiTenantModelTrait, HasFactory;
 
     public $table = 'working_days';
 
