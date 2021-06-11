@@ -50,112 +50,85 @@
                         <th width="10"></th>
                         <th>Lună</th>
                         <th>Ore</th>
-                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
                 @foreach($report_cm as $month =>$value_cm)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_cm['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                
                 </tr>
                 @endforeach
                 @foreach($report_lm as $month =>$value_lm)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_lm['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                
                 </tr>
                 @endforeach
                 @foreach($report_l2m as $month =>$value_l2m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l2m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                    
                 </tr>
                 @endforeach
                 @foreach($report_l3m as $month =>$value_l3m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l3m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                   
                 </tr>
                 @endforeach
                 @foreach($report_l4m as $month =>$value_l4m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l4m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                   
                 </tr>
                 @endforeach
                 @foreach($report_l5m as $month =>$value_l5m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l5m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                    
                 </tr>
                 @endforeach
                 @foreach($report_l6m as $month =>$value_l6m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l6m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                   
                 </tr>
                 @endforeach
                 @foreach($report_l7m as $month =>$value_l7m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l7m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                   
                 </tr>
                 @endforeach
                 @foreach($report_l8m as $month =>$value_l8m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l8m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                   
                 </tr>
                 @endforeach
                 @foreach($report_l9m as $month =>$value_l9m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l9m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                    
                 </tr>
                 @endforeach
                 @foreach($report_l10m as $month =>$value_l10m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l10m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                  
                 </tr>
                 @endforeach
                 @foreach($report_l11m as $month =>$value_l11m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l11m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                   
                 </tr>
                 @endforeach
                 @foreach($report_l12m as $month =>$value_l12m)
                 <tr><td></td><td>{{ \Carbon\Carbon::parse($month)->format('F Y')}}</td>
                     <td>{{ $value_l12m['hours']}}</td>
-                    <td><a class="btn btn-xs btn-primary" href="">{{ trans('global.view') }}</a>
-                        <a class="btn btn-xs btn-info" href="">{{ trans('global.edit') }}</a>
-                    </td>
+                    
                 </tr>
                 @endforeach
                 </tbody>
