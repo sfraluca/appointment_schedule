@@ -355,32 +355,32 @@
                             </div> <!-- section title -->
                             <p class="text">Stripe este integrat în această aplicație, care ajută angajatorul să facă tranzacția mai rapidă și mai ușoară. Pentru angajați este atât de ușor să vadă câte ore au făcut într-o lună, vizualizând statisticile din panoul de control și prin calendar. Este foarte ușor să introduceți programarea și, nu în ultimul rând, să programați un program cu clienții.</p>
                         </div> <!-- counter content -->
-                        <div class="row no-gutters">
+                  <!--      <div class="row no-gutters">
                             <div class="col-4">
                                 <div class="single-counter counter-color-1 d-flex align-items-center justify-content-center">
                                     <div class="counter-items text-center">
                                         <span class="count"><span class="counter">1</span>K</span>
                                         <p class="text">Companii</p>
-                                    </div>
+                                    </div> -->
                                 </div> <!-- single counter -->
-                            </div>
+                   <!--         </div>
                             <div class="col-4">
                                 <div class="single-counter counter-color-2 d-flex align-items-center justify-content-center">
                                     <div class="counter-items text-center">
                                         <span class="count"><span class="counter">3</span>K</span>
                                         <p class="text">Utilizatori</p>
-                                    </div>
+                                    </div> -->
                                 </div> <!-- single counter -->
-                            </div>
+                        <!--     </div>
                             <div class="col-4">
                                 <div class="single-counter counter-color-3 d-flex align-items-center justify-content-center">
                                     <div class="counter-items text-center">
                                         <span class="count"><span class="counter">4.8</span></span>
                                         <p class="text">Evaluarea utilizatorilor</p>
-                                    </div>
+                                    </div> -->
                                 </div> <!-- single counter -->
                             </div>
-                        </div> <!-- row -->
+                        </div> <!-- row --> 
                     </div> <!-- counter wrapper -->
                 </div>
             </div> <!-- row -->
