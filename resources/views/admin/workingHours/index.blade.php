@@ -21,15 +21,14 @@
 @endcan
 </div>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
-
 <form action="" method="GET">
     <div class="row">
         <div class="col-xs-6 col-md-4 form-group">
             <label class="control-label" for="employee">{{ trans('cruds.workingHour.fields.employee') }}</label>
             <select id="employee" name="employee" class="form-control">
-                @foreach($employees as $key => $value)
+            @foreach($employees as $key => $value)
                 <option value="{{ $key }}" @if ($key==$currentEmployee) selected @endif>{{$value}}</option>
-                @endforeach
+            @endforeach
             </select>
         </div>
         <div class="col-xs-4">

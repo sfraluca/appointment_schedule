@@ -12,9 +12,16 @@ use App\Models\WorkingHour;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 class HomeController
 {
-    
+    public function userCalendar() {
+        $user_auth = Auth::user();
+        // dd($user_auth->id);
+        $id_user = $user_auth->id;
+        return view('partials.menu', compact('id_user'));
+    }
+
     public function profile () {
         // $employee = Employee::all();
         $user_auth = Auth::user();
@@ -29,6 +36,16 @@ class HomeController
             ->leftJoin('employment','employees.id','=','employment.employee_id')
             ->where('employees.id','=', $employee->id)
             ->get();
+
+            $table = WorkingHour::all();
+
+            $q = WorkingHour::with('employee')
+                ->orderBy('id','asc')
+                ->where('employee_id', $employee->id);
+           
+            $working_hours = $q->get();
+
+            // dd($working_hours);
 
         $current_year = WorkingHour::with('employee')
                     ->select(['id','employee_id',
@@ -143,7 +160,7 @@ class HomeController
                     ];
                 }  
         }
-        return view('user.profile', compact('employees','report_cy','report_ly','report_cm','report_lm'));
+        return view('user.profile', compact('working_hours','employees','report_cy','report_ly','report_cm','report_lm'));
     }
     public function index()
     {

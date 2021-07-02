@@ -9,25 +9,56 @@
         </div>
     </div>
 @endcan
-<div class="card">
 
-   <div class="card-body">
-    @foreach($employees as $key => $employee) 
-    <div class="card">
-    <div class="card-body">
-        <h4 class="card-title">{{$employee->first_name . ' ' . $employee->last_name}}</h4>
-        <h6 class="card-subtitle mb-2 text-muted"> {{ trans('cruds.employee.id') }}:{{ $employee->id ?? '' }}</h6>
-        <p class="card-text">Telefon:{{ $employee->phone ?? '' }}</p> 
-        <p class="card-text">Email:{{ $employee->email ?? '' }}</p>
-        <p class="card-text">{{ trans('cruds.employee.hour') }}:{{ $employee->hour ?? '' }}</p> 
-        <p class="card-text">{{ trans('cruds.employee.money') }}:{{ $employee->money ?? '' }}</p>
-
-    </div>
-    </div>  
-    </div>                   
-    @endforeach
-    </div>
+<div class="card" style="margin-bottom: 10px;">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  @foreach($employees as $key => $employee) 
+  {{$employee->first_name . ' ' . $employee->last_name}}
+  @endforeach
+</button>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profilul tău</h5>
+       
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      @foreach($employees as $key => $employee) 
+        <p class="card-text"><i class="fas fa-phone"></i> {{ $employee->phone ?? '' }}</p> 
+        <p class="card-text"><i class="fas fa-envelope"></i> {{ $employee->email ?? '' }}</p>
+        <p class="card-text"><i class="fas fa-clock"></i> {{ $employee->hour ?? '' }}</p> 
+        <p class="card-text"><i class="fas fa-money"></i> {{ $employee->money ?? '' }}</p>
+        @endforeach
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css' />
+
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <a class="btn btn-success" href="{{ route('admin.user_create') }}">
+                {{ trans('global.add') }} {{ trans('cruds.workingHour.title_singular') }}
+            </a>
+        </div>
+    </div>
+
+<div id="calendar"></div>
+
+</div>
+
 <div class="card" style="margin-bottom: 10px;">
 
    <div class="card-body">
@@ -91,5 +122,28 @@
 @endsection
 @section('scripts')
 @parent
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+<script>
+$(document).ready(function () {
+            // page is now ready, initialize the calendar...
+           
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                defaultView: 'agendaWeek',
+                events: [
+                @foreach( $working_hours as $hour)
+                {
+                    title : '{{ $hour->employee->first_name . '' . $hour->employee->last_name}}',
+                    start : '{{ $hour->date . ' ' . $hour->start_time }}',
+                    end : '{{ $hour->date . ' ' . $hour->finish_time}}',
+                    // url : "{{ route('admin.user_edit', $hour->id) }}"
+                },
+                @endforeach
+            ]
 
+
+            })
+        });
+      </script>
 @endsection

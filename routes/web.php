@@ -16,7 +16,15 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/dashboard', 'HomeController@index')->name('home');
-    Route::get('/', 'HomeController@profile')->name('profile');
+    Route::get('/profile', 'HomeController@profile')->name('profile');
+    Route::get('/user_create', 'WorkingHourController@user_create')->name('user_create');
+    Route::post('/user_store', 'WorkingHourController@user_store')->name('user_store');
+    Route::get('/user_edit', 'WorkingHourController@user_edit')->name('user_edit');
+    Route::post('/user_update', 'WorkingHourController@user_update')->name('user_update');
+
+    // Route::resource('profil', 'WorkingHourController');
+
+    // Route::get('/', 'HomeController@userCalendar')->name('userCalendar');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'PermissionsController');

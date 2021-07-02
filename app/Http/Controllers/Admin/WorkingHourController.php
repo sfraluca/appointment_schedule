@@ -8,6 +8,7 @@ use App\Http\Requests\StoreWorkingHourRequest;
 use App\Http\Requests\UpdateWorkingHourRequest;
 use App\Models\Employee;
 use App\Models\Project;
+use App\Models\User;
 use App\Models\WorkingHour;
 use Illuminate\Support\Facades\DB;
 use Gate;
@@ -15,9 +16,13 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class WorkingHourController extends Controller
 {
+
+
+
     public function raport(Request $request, Carbon $date)
     {
         abort_if(Gate::denies('working_hour_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -416,7 +421,6 @@ class WorkingHourController extends Controller
 
         return view('admin.workingHours.raport',compact('report_cy','report_ly','report_cm','report_lm','report_l2m','report_l3m','report_l4m','report_l5m','report_l6m','report_l7m','report_l8m','report_l9m','report_l9m','report_l10m','report_l10m','report_l11m','report_l12m','employees','currentEmployee'));
     }
-
     public function index(Request $request)
     {
         abort_if(Gate::denies('working_hour_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -433,12 +437,13 @@ class WorkingHourController extends Controller
             }
 
             $employees = Employee::all()->pluck('first_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+         
+            if($request->has('employee')) {
+                $currentEmployee = $request->get('employee');
 
-             if($request->has('employee')) {
-                 $currentEmployee = $request->get('employee');
-             } else {
-                 $currentEmployee = '';
-             } 
+            } else {
+                $currentEmployee = '';
+            }
 
         return view('admin.workingHours.index',compact('working_hours','employees','currentEmployee'));
       
@@ -455,11 +460,36 @@ class WorkingHourController extends Controller
         return view('admin.workingHours.create', compact('employees', 'projects'));
     }
 
+    public function user_create()
+    {
+        abort_if(Gate::denies('working_hour_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $user_auth = Auth::user();
+        
+        $employees = User::select('id','employee_id','name')
+        ->where('id','=', $user_auth->id)
+        ->select('id','name')
+        ->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        // dd($users);
+        // $employees = Employee::all()->pluck('first_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $projects = Project::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('user.profil.create', compact('employees', 'projects'));
+    }
+
     public function store(StoreWorkingHourRequest $request)
     {
         $workingHour = WorkingHour::create($request->all());
 
         return redirect()->route('admin.working-hours.index');
+    }
+
+    public function user_store(StoreWorkingHourRequest $request)
+    {
+        $workingHour = WorkingHour::create($request->all());
+
+        return redirect()->route('admin.profile');
     }
 
     public function edit(WorkingHour $workingHour)
@@ -475,11 +505,31 @@ class WorkingHourController extends Controller
         return view('admin.workingHours.edit', compact('employees', 'projects', 'workingHour'));
     }
 
+    public function user_edit(WorkingHour $workingHour)
+    {
+        abort_if(Gate::denies('working_hour_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $employees = Employee::all()->pluck('first_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $projects = Project::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $workingHour->load('employee', 'project', 'created_by');
+
+        return view('user.profil.edit', compact('employees', 'projects', 'workingHour'));
+    }
+
     public function update(UpdateWorkingHourRequest $request, WorkingHour $workingHour)
     {
         $workingHour->update($request->all());
 
         return redirect()->route('admin.working-hours.index');
+    }
+
+    public function user_update(UpdateWorkingHourRequest $request, WorkingHour $workingHour)
+    {
+        $workingHour->update($request->all());
+        dd( $workingHour);
+        return redirect()->route('admin.profile');
     }
 
     public function show(WorkingHour $workingHour)

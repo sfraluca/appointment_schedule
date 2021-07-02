@@ -124,6 +124,7 @@
                 </a>
             </li>
         @endcan
+
         @can('working_days')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.working_days.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/working_days") || request()->is("admin/working_days/*") ? "active" : "" }}">
